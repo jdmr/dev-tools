@@ -1,0 +1,138 @@
+Web Developer Tools
+===================
+David Mendoza <jdmendoza@swau.edu>
+2016-09-20
+:toc: left
+
+== Objectives
+This workshop's objectives are to help you acquire tools that will allow you to be better prepared for when the time comes to look for a web developer or a web administrator position (so it's not 'how to code in java', or 'how to do C++ right').
+
+== Introduction
+To do web development we need to understand what it involves. It's simple really, but lets just state it to have a common ground. We'll have our user client which is going to open up a browser and type in the url box the address of our service. A server is going to be listening and will produce the html the client's browser needs to show what we want the client to see. To produce this content the server will probably need to access a repository, which most of the times is a database. The client then will start interacting with the application in the browser, the browser will send the information to the server to be processed and the server will store it in the database if it needs to.
+
+== Developer Machine Setup
+=== Linux
+==== Why are we using Linux?
+Most of the deployments are done on UNIX based systems, so I found it more of a 'necessity' than 'a good to have' in my line of work. A lot of workspaces have limited IT budgets, and Linux gets you a lot of stuff for free. So that's why I want them to pick up this tool as we go.
+
+==== Which distribution should I use?
+There are a lot of linux distributions out there, but most are based on only a few, one of the most solid ones is Debian, Fedora would be another one, and anyone will do as long as it allows to install packages and you make sure that the community behind it is big and knowledgable. I prefer the distributions based on Debian, so the instructions will be for Debian based distributions.
+
+==== Basic Linux Setup
+The Linux Operating System is an evolving environment. What this means is that the system is always being worked on and updated, some distributions provide expected timeframes for their releases, but the reality is that there are so many developers working on the different parts that conform the Linux Operating System that in between these timeframes there's a lot of little releases going on for different parts of the Operating System.
+
+To make it work, each base distribution has created a repository with the packages that the system needs and the ones that can be added to it.
+
+==== Terminal
+Knowing your way around on a UNIX/Linux system is essential. And though we have a GUI environment, we'll have to get used to working on a terminal to gain the experience we will need when we actually do the deployment on a server (which most of the time doesn't have a GUI).
+
+The basic commands you'll need to use the terminal are:
+
+ls:: Shows the files in the folder.
+cp:: Copies files from source to destination
+mv:: Moves files from source to destination.
+ln:: Creates hard or soft links.
+tar:: Combines files into a single file, it also extracts the files from that single file.
+zip & unzip:: Do the same thing as *_tar_* but with a different file format. Some distributions don't provide this tool by default so you might need to install it.
+
+For a Debian based distribution you need to run on a terminal:
+
+----
+$ sudo apt-get update
+----
+
+You'll notice the first word of this instruction is *_sudo_*. Most Linux systems have a super user called *_root_*. This user can do everything on the system, even destroy it. To prevent users from doing _stuff_ to the system without warning, the *_sudo_* instruction was created. It allows the user granted this privilege to run instructions as root. The next instruction is *_apt-get_* which is how Debian based systems interact with the remote repositories list and the local one. And finally, *_update_* is to sync the remote package repositories list with the local one.
+
+Once the system has finished updating the lists, you need to run:
+----
+$ sudo apt-get upgrade
+----
+
+We need to keep doing these two instructions on a regular basis on our linux machines to keep them up to date and secure.
+
+==== Java
+
+We'll now proceed to setup Java on our machine. On the same terminal we need to paste the following:
+----
+$ sudo echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list
+$ sudo echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
+$ sudo apt-get update
+$ sudo apt-get install oracle-java8-installer
+----
+
+==== Maven
+
+This will install java on the system, but to have it in a way that's easy to maintain and to use with other tools we'll need a few extra steps, but before that we need to install Maven. To do that we'll do the following:
+----
+$ wget http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+$ tar -xvzf apache-maven-3.3.9-bin.tar.gz
+$ sudo mkdir /opt/tools
+$ sudo mv apache-maven-3.3.9 /opt/tools
+$ sudo ln -s /opt/tools/apache-maven-3.3.9 /usr/local/maven
+----
+And to configure the environment with Maven and add the extra steps for Java that we talked about we need to follow these steps:
+----
+$ sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java
+$ sudo vi /etc/profile
+----
+
+==== Vi Editor
+
+Vi is a powerful editor and it comes on almost every linux distribution. I'll show you the basics of this tool. To move around use *_j_* or *_k_*. To go to the end of the file is *_G_* and to go to the beginning of the file use *_gg_*. You'll notice that you can't modify the file even though you're in the right spot, that's because your in command mode, to insert changes where your at use *_i_*, to append use *_a_*, to add a new line use *_o_* and to go back to command mode press the *_esc_* key. Special commands start with a colon (*_:_*). For instance *_:q_* is quit, *_:w_* is save, and you can use them together to save and quit *_:wq_*. If you made changes and you try to quit without saving, it won't let you quit until you save or force quit with *_:q!_*.
+
+We need to add a few lines to the end of the /etc/profile file we have open, and to do that we need to go to the end of the file add a new line and copy or paste the following:
+----
+export JAVA_HOME=/usr/local/java
+export MAVEN_HOME=/usr/local/maven
+export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
+----
+With those changes in place we save and quit the file. To get the environment variables to load on our terminal the easiest way is to sign out and sign back again, open a terminal and check that everything is in place with the following instructions:
+----
+$ java -version
+$ mvn -v
+----
+Both of them should run and show you version numbers.
+
+===== Spring Boot
+Spring Boot is a tool part of the Spring Framework that enables developers to start quickly, they take care of setting up the application with opinionated defaults. This makes it easy to take advantage of what the Spring Framework has to offer without having to know too much you are able to build a solid application in minutes.
+
+Let's do that! Go to http://start.spring.io and type Web on the dependencies side and then click on the Generate Project button, this will create a demo.zip file for you. Unzip it and move it to your projects folder
+----
+$ cd Downloads
+$ unzip demo.zip
+$ mkdir ~/projects
+$ mv demo ~/projects
+$ cd ~/projects/demo
+----
+We now run our demo app with the following instruction:
+----
+$ mvn spring-boot:run
+----
+We wait for it to show the following line:
+----
+... com.example.DemoApplication              : Started DemoApplication in 2.476 seconds (JVM running for 8.941)
+----
+We open a browser and go to http://localhost:8080 and we'll get a *_Whitelabel Error Page_* with a *_404_* near the bottom. What this means is that the app couldn't find a page to serve. We'll fix that by creating it:
+----
+$ vi src/main/resources/static/index.html
+----
+This will open the editor on a new document, remember that when you open vi your in command mode to actually edit the file you would have to go into *_INSERT_* mode by pressing the *_i_* key (command).
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+  </body>
+</html>
+----
+
+Typing all that in in vi is really tiring, there has to be a better way right? Of course there is, I'm just trying to show you the ropes with vi that's all, we should probably switch to *_vim_* and use plugins but I'll let you try that one on your own. We're going to try Atom
+===== NetBeans
+Download and install the JEE version of NetBeans from http://netbeans.org/downloads/. It has an installer so I won't go into much detail, I'd recommend installing everything under /opt just to be consistent with the other stuff we've just done.
