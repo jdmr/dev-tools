@@ -1,4 +1,5 @@
-= Developer Tools Tutorial
+Developer Tools Tutorial
+========================
 
 This tutorial is geared towards developers with little to no experience. 
 It will provide the basic tools you need to build an app and deploy it.
