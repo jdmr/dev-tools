@@ -1,8 +1,10 @@
 Web Developer Tools
 ===================
 David Mendoza <jdmendoza@swau.edu>
-2016-09-20
+v1.0, 2016-09-28
 :toc: left
+:imagesdir: assets/images
+
 
 == Objectives
 This workshop's objectives are to help you acquire tools that will allow you to be better prepared for when the time comes to look for a web developer or a web administrator position (so it's not 'how to code in java', or 'how to do C++ right').
@@ -37,6 +39,7 @@ zip & unzip:: Do the same thing as *_tar_* but with a different file format. Som
 
 For a Debian based distribution you need to run on a terminal:
 
+[source,sh]
 ----
 $ sudo apt-get update
 ----
@@ -44,60 +47,119 @@ $ sudo apt-get update
 You'll notice the first word of this instruction is *_sudo_*. Most Linux systems have a super user called *_root_*. This user can do everything on the system, even destroy it. To prevent users from doing _stuff_ to the system without warning, the *_sudo_* instruction was created. It allows the user granted this privilege to run instructions as root. The next instruction is *_apt-get_* which is how Debian based systems interact with the remote repositories list and the local one. And finally, *_update_* is to sync the remote package repositories list with the local one.
 
 Once the system has finished updating the lists, you need to run:
+
+[source,sh]
 ----
 $ sudo apt-get upgrade
 ----
 
-We need to keep doing these two instructions on a regular basis on our linux machines to keep them up to date and secure.
+We need to keep doing these two instructions on a regular basis on our linux boxes to keep them up to date and secure.
 
-==== Java
+==== Vi Editor
 
-We'll now proceed to setup Java on our machine. On the same terminal we need to paste the following:
+Vi is a powerful editor and it comes on almost every linux distribution. I'll show you the basics of this tool. To move around use *_j_* or *_k_*. To go to the end of the file is *_G_* and to go to the beginning of the file use *_gg_*. You'll notice that you can't modify the file even though you're in the right spot, that's because your in command mode, to insert changes where your at use *_i_*, to append use *_a_*, to add a new line use *_o_* and to go back to command mode press the *_esc_* key. Special commands start with a colon (*_:_*). For instance *_:q_* is quit, *_:w_* is save, and you can use them together to save and quit *_:wq_*. If you made changes and you try to quit without saving, it won't let you quit until you save or force quit with *_:q!_*.
+
+=== Java
+
+We'll proceed to setup Java on our machine by adding the java package repository url to our *_sources.list_* file.
+
+[source,sh]
 ----
-$ sudo echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list
-$ sudo echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list
-$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
-$ sudo apt-get update
-$ sudo apt-get install oracle-java8-installer
+$ sudo vi /etc/apt/sources.list
 ----
 
-==== Maven
+Go to the end of the file (*_G_*) and add a new line (*_o_*) and paste the following line:
 
-This will install java on the system, but to have it in a way that's easy to maintain and to use with other tools we'll need a few extra steps, but before that we need to install Maven. To do that we'll do the following:
+[source,sh]
+----
+deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main
+----
+
+We save and exit the file by getting out of *_INSERT_* mode by pressing the *_esc_* key, and then the instruction *_:wq_* (or the shorthand *_:x_*).
+
+[source,sh]
+----
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 # <1>
+$ sudo apt-get update # <2>
+$ sudo apt-get install oracle-java8-installer # <3>
+$ sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java # <4>
+$ sudo vi /etc/profile # <5>
+----
+
+<1> The new repository we added to the sources.list file is not trusted until we add the key with which every package on that repository is packaged. So by adding the key into our system we now trust this new repository.
+
+<2> We ask linux to go get the list of packages available on the new repository (as well as any other repositories on the sources.list file).
+
+<3> We install Java 8 on our system.
+
+<4> With the previous step Java is available on our system. The problem is that some of the tools we're using require an environment variable called JAVA_HOME. We could point directly to the directory where Java is at, and it would work, but when a new version of Java comes out, we would have to do this again and reload the environment by doing a logout and a login again. So to make that easier we'll add a soft link, and then when new version of java is installed we just change the soft link and everything works without having to reload the environment.
+
+<5> We need to modify the *_/etc/profile_* file to add the JAVA_HOME environment variable.
+
+At the end of the file (*_G_*) we need to add (*_o_*) this lines:
+
+[source,sh]
+----
+export JAVA_HOME=/usr/local/java
+export PATH=$JAVA_HOME/bin:$PATH
+----
+
+With this we have configured Java on our system.
+
+=== Maven
+
+Now we need to install Maven, our build tool. When we start building our tool you'll notice that we create java classes, html files, css files, some of these files need to be compiled, some need to be on a certain place in order to be found by the app. Maven helps us with all these chores.
+
+The place to look for Maven is http://maven.apache.org, you can download it from there with your browser and skip the first instruction, or you can use *_wget_* (another linux tool that enables us to download a file without a browser) and continue with the rest of the instructions to install it.
+
+[source,sh]
 ----
 $ wget http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
 $ tar -xvzf apache-maven-3.3.9-bin.tar.gz
 $ sudo mkdir /opt/tools
 $ sudo mv apache-maven-3.3.9 /opt/tools
 $ sudo ln -s /opt/tools/apache-maven-3.3.9 /usr/local/maven
-----
-And to configure the environment with Maven and add the extra steps for Java that we talked about we need to follow these steps:
-----
-$ sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java
 $ sudo vi /etc/profile
 ----
 
-==== Vi Editor
+NOTE: Keep in mind that new releases come out all the time. Do the same steps for the newer versions of the tool.
 
-Vi is a powerful editor and it comes on almost every linux distribution. I'll show you the basics of this tool. To move around use *_j_* or *_k_*. To go to the end of the file is *_G_* and to go to the beginning of the file use *_gg_*. You'll notice that you can't modify the file even though you're in the right spot, that's because your in command mode, to insert changes where your at use *_i_*, to append use *_a_*, to add a new line use *_o_* and to go back to command mode press the *_esc_* key. Special commands start with a colon (*_:_*). For instance *_:q_* is quit, *_:w_* is save, and you can use them together to save and quit *_:wq_*. If you made changes and you try to quit without saving, it won't let you quit until you save or force quit with *_:q!_*.
+We need to open the /etc/profile file again to add Maven to the environment.
 
-We need to add a few lines to the end of the /etc/profile file we have open, and to do that we need to go to the end of the file add a new line and copy or paste the following:
+We need to add a few lines to the end of the /etc/profile file we have open, and to do that we need to go to the end of the file and modify it to look like this:
+
+[source,sh]
 ----
-export JAVA_HOME=/usr/local/java
-export MAVEN_HOME=/usr/local/maven
-export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
+export JAVA_HOME=/usr/local/java # <1>
+export MAVEN_HOME=/usr/local/maven # <2>
+export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH # <3>
 ----
+
+<1> Remains the same.
+
+<2> New line adding the MAVEN_HOME environment variable.
+
+<3> We insert the $MAVEN_HOME/bin directory to the PATH.
+
 With those changes in place we save and quit the file. To get the environment variables to load on our terminal the easiest way is to sign out and sign back again, open a terminal and check that everything is in place with the following instructions:
+
+[source,sh]
 ----
 $ java -version
 $ mvn -v
 ----
-Both of them should run and show you version numbers.
 
-===== Spring Boot
-Spring Boot is a tool part of the Spring Framework that enables developers to start quickly, they take care of setting up the application with opinionated defaults. This makes it easy to take advantage of what the Spring Framework has to offer without having to know too much you are able to build a solid application in minutes.
+Both of them should run and show you version numbers. Finally our machine is ready for some coding!
 
-Let's do that! Go to http://start.spring.io and type Web on the dependencies side and then click on the Generate Project button, this will create a demo.zip file for you. Unzip it and move it to your projects folder
+== Let's Start Coding!
+
+=== Spring Boot
+
+Spring Boot is a tool part of the Spring Framework that enables developers to start quickly, they take care of setting up the application with opinionated defaults. This makes it easy to take advantage of what the Spring Framework has to offer. Without having to know too much you are able to build a solid application in minutes.
+
+Let's do that! Go to http://start.spring.io and on the dependencies side type Web, hit enter to add it, and then type Devtools and hit enter again and then click on the Generate Project button, this will create a demo.zip file for you. Unzip it and move it to your projects folder
+
+[source,sh]
 ----
 $ cd Downloads
 $ unzip demo.zip
@@ -105,18 +167,27 @@ $ mkdir ~/projects
 $ mv demo ~/projects
 $ cd ~/projects/demo
 ----
+
 We now run our demo app with the following instruction:
+
+[source,sh]
 ----
 $ mvn spring-boot:run
 ----
+
 We wait for it to show the following line:
+
 ----
 ... com.example.DemoApplication              : Started DemoApplication in 2.476 seconds (JVM running for 8.941)
 ----
-We open a browser and go to http://localhost:8080 and we'll get a *_Whitelabel Error Page_* with a *_404_* near the bottom. What this means is that the app couldn't find a page to serve. We'll fix that by creating it:
+
+We open a browser and go to http://localhost:8080 and we'll get a *_Whitelabel Error Page_* with a *_404_* near the bottom. What this means is that the app couldn't find a page to provide as a response to the client request. We'll fix that by creating it:
+
+[source,sh]
 ----
 $ vi src/main/resources/static/index.html
 ----
+
 This will open the editor on a new document, remember that when you open vi your in command mode to actually edit the file you would have to go into *_INSERT_* mode by pressing the *_i_* key (command).
 
 [source,html]
@@ -133,6 +204,188 @@ This will open the editor on a new document, remember that when you open vi your
 </html>
 ----
 
-Typing all that in in vi is really tiring, there has to be a better way right? Of course there is, I'm just trying to show you the ropes with vi that's all, we should probably switch to *_vim_* and use plugins but I'll let you try that one on your own. We're going to try Atom
-===== NetBeans
-Download and install the JEE version of NetBeans from http://netbeans.org/downloads/. It has an installer so I won't go into much detail, I'd recommend installing everything under /opt just to be consistent with the other stuff we've just done.
+Now visit http://localhost:8080 again and we should be getting the same *_Whitelabel Error Page_*. This means we need to redeploy the app. Go to the terminal where spring boot is running and use the combination of *_ctrl+shift+t_* keys to open a new tab. That tab should be on the project folder, just run to redeploy:
+
+[source,sh]
+----
+$ mvn package -DskipTests=true
+----
+
+By the time this instruction ends, the redeploy should already be done, so just go visit http://localhost:8080 and you should get the hello world page.
+
+=== Atom
+
+Typing all that in in vi is really tiring, there has to be a better way right? Of course there is, I'm just trying to show you the ropes with vi that's all, we should probably switch to *_vim_* and use plugins but I'll let you try that one on your own. We're going to try Atom.
+
+[quote, atom.io]
+Atom is a text editor that's modern, approachable, yet hackable to the core—a tool you can customize to do anything but also use productively without ever touching a config file.
+
+Just go to http://atom.io in your browser download the .deb file and install it on your system with:
+
+----
+$ sudo apt-get install git # <1>
+$ sudo dpkg -i atom-amd64.deb # <2>
+$ sudo apt-get install -f # <3>
+----
+
+<1> In order to manually install atom we need to install it's dependencies. Git being the one we don't have installed yet. Git is a version control tool we'll be using down the road, so it doesn't hurt to install it here.
+
+<2> Extract package to proper directory.
+
+<3> Install package.
+
+We open atom from the terminal by:
+
+[source,sh]
+----
+$ cd ~/projects/demo
+$ atom .
+----
+
+On the left we'll see a file manager with the text editor on the right. We'll navigate to src/main/resources/static and right click to create a new file called *_hello.html_*. Then we type *_html_* and then press the *_tab_* key, whoa! What just happened, well Atom comes with a few plugins preinstalled one of them being Emmet. This plugin has html shortcuts to help speed up html development. You can see what Emmet is capable of at http://emmet.io/.
+
+Save your changes and see your changes at http://localhost:8080/hello.html, if you get the 404 page again, you'll need to redeploy the app.
+
+=== TODO App
+
+image::start-spring-io.jpg[caption:"http://start.spring.io", alt="http://start.spring.io", link="http://start.spring.io"]
+
+Let's start the app we'll be using through out the workshop by going back to http://start.spring.io and renaming the artifact name to *_todo_* and adding *_Thymeleaf_* () and *_DevTools_* to the dependency list. Click on Generate Project to download zip file, extract it in our projects folder with:
+
+[source,sh]
+----
+$ cd ~/projects/
+$ unzip ~/Downloads/todo.zip
+$ cd todo
+$ atom .
+----
+
+=== Travis CI
+
+[quote, wikipedia.org]
+Travis CI is a hosted, distributed continuous integration service used to build and test software projects hosted at GitHub.
+
+==== Why do we need a tool like Travis?
+
+When you're building an application is always important to make sure that whatever you've built is working properly and you also want to make sure that you haven't broken anything else in the process. That's why you need a testing infrastructure. Maven already provides a way of testing your code if you have tests to run. And Spring Boot comes with JUnit support to build those tests, as a matter of fact, the project that came in the zip file already has a test in there and you can run it by going to the terminal and running the following instruction on the project's folder:
+
+[source,sh]
+----
+$ mvn test
+----
+
+By building our application alongside tests that validate that our application is doing what it's supposed to do, our application will be a lot more solid when deployed. And when you code and have to introduce a big change to the codebase you can make it without wondering if something broke.
+
+=== Git
+[quote, git-scm.com]
+Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+This confidence that we're talking about grows even more if we use a _Version Control System_ to manage our codebase. How so? Well, when you add changes and start adding new dependencies and make that big change that in your mind would work, but when you're actually building it you realize that it doesn't work, now what? You have all these new dependencies on your codebase, you've changed a bunch of classes, html, etc. to try and make it work, and now it's all a mess, if only there was a way of going to the way it was before I started adding this new feature. That's what a _Version Control System_ enables you to do. To go to any _version_ of the codebase with ease. The _Version Control Tool_ we're going to be using is *_Git_*. This _version control manager_ allows us to have a full blown _version control system_ in our computer, and if you want to use it to code from different computers and/or with different people, well, they all can have a copy of your repository and git has ways of synchronizing changes between the different repository copies.
+
+Travis CI works in conjunction with Git to checkout your changes once you've made a commit. Travis CI doesn't actually connect to your computer to get the changes, it uses a service that's called *_Github_*. This service can hold a copy of your local repository and share it with other people or tools (_like Travis CI_). We'll get to that in a bit, but first let's configure Travis CI.
+
+In the root directory of our application we need to create a file called: _.travis.xml_ (notice the period in front of the file name)
+
+image::travis-yml.jpg[]
+
+The content of the file as you can see in the image is:
+
+[source,yaml]
+----
+language: java
+sudo: false
+
+jdk:
+  - oraclejdk8
+----
+
+First we're telling Travis CI that the base code of our app is in Java, then that we won't need sudo privileges to execute our tests and finally what version of Java do we need to compile and run our tests.
+
+We already installed Git to use Atom, but in case you didn't you would need to run this from the terminal shell:
+
+[source,sh]
+----
+$ sudo apt-get install git
+----
+
+=== GitHub
+[quote, github.com]
+GitHub is home to all kinds of software projects, from simple programs to today’s most popular apps.
+
+To use it we'll need to create an account, so go to http://github.com and sign up for one and verify your email. Once you've finished that create a new repository named todo.
+
+image::github.jpg[]
+
+After you've created the repository leave the instructions to create the local repository and open a new browser window to go to http://travis-ci.org and click on the _Sign in with GitHub_ button and then authorize Travis CI to interact with your GitHub Account, then click on your profile to enable your _todo_ repository for continuous integration.
+
+Now we go back to our local repository creation instructions page and copy the first two lines and paste them in the terminal after we are certain that we are in the project's directory (_~/projects/todo_) and notice that I've changed the third line to use a period (.) instead of the README.md, this is because we have more files in the project and we want to add them:
+
+[source, sh]
+----
+echo "# todo" >> README.md
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/david-mendoza/todo.git
+git push -u origin master
+----
+
+Our build passed! Awesome! Now we need to let everyone know, right? To do that we go to http://travis-ci.org and click on the badge right next to our project and then choose Markdown from the options copy that code into the README.md file in atom. To see more detailed instructions from Travis CI go to https://docs.travis-ci.com/user/status-images. Now go to your terminal shell again and do:
+
+[source, sh]
+----
+git add .
+git commit -m "Added travis build status badge to the README"
+git push
+----
+
+Now when somebody loads your GitHub repository page they'll see that our code is being tested and currently passing those tests.
+
+=== Thymeleaf
+
+[quote, thymeleaf.org]
+Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
+
+Our first iteration of our app is going to be a server-side rendered app. For this we would need JSP's (_Java Server Pages_) which have been discontinued by the community behind JEE (_Java Enterprise Edition_). JEE is a specification that defines tools to build enterprise grade applications with Java, we could follow that route in developing this application, but that road is a little more cumbersome. Spring was born of the need to simplify Java Enterprise development and has done such a great job that the current JEE spec pulled a lot of it's standards from how Spring does things. Doing JEE development now is a lot easier than before but in my opinion some things are still missing.
+
+I don't want you to think that we're using Thymeleaf because JSP's got discontinued. Thymeleaf is a great tool and it provides a bunch of stuff that you can't get on JSP's alone, so I do believe that Thymeleaf is a _modern server-side_ rendering engine.
+
+=== NetBeans
+
+It's nice to have a text editor that will help with html and simple file edits, but to do Java in a much more productive way we need an IDE, and there's where NetBeans comes in.
+
+Download and install the JEE version of NetBeans from http://netbeans.org/downloads/. Open a terminal and go to the Downloads folder and do the following instructions there:
+
+[source, sh]
+----
+$ chmod +x netbeans-8.1-javaee-linux.sh
+$ ./netbeans-8.1-javaee-linux.sh
+----
+
+The first instructions makes the file executable and the second actually starts the installer. Follow the instructions to install and enable the Apache Tomcat installation (we don't need it for the workshop, but you might need it later). On the screen where it asks for the JDK please add the JDK_HOME link we already created and click next:
+
+[source, sh]
+----
+/usr/local/java
+----
+
+Once installed we click on File > Open Project and then look for ~/projects/todo, and since NetBeans uses Maven's POM file to manage the project, it will just open.
+
+image::netbeans.jpg[]
+
+The first thing we need to do after we've opened a maven project is set it up by right clicking on the project name and then click on the Properties option. Then a new window will show up.
+
+image::netbeans-run-actions.jpg[]
+
+Click on the Actions option on the left menu, and then on the right click on the Build project and in the Execute Goals input change the value to _package_, then the Clean and Build project option change it to _clean package_ and finally the Build with Dependencies change it to just _package_ again. Click on the Build project option again and click on the _Add_ button under _Set properties_ and choose the Skip Tests option. These changes are just to make the build process a little faster, it would work just fine without them too.
+
+=== Code
+
+The Spring starter tool adds the classes in what in my opinion is the wrong folder. To fix it we add a new package todo the our current package schema. To do that we need to right click on the package name and select the New package option and type _todo_. Once you've finished creating both packages (source and test) drag the class in Source Packages to the new package and click on the Refactor button for both. Let's make sure we didn't break anything by testing the changes in the terminal type:
+
+[source, sh]
+----
+$ mvn clean test
+----
+
+Next, we're going to build a test that checks if the title of the first page we get is TODO, it's not right now, but we'll make it so later.
