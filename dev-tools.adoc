@@ -260,6 +260,33 @@ $ cd todo
 $ atom .
 ----
 
+Open the _pom.xml_ file and add the following between the description end tag and the parent beginning tag:
+
+[source, xml]
+----
+<licenses>
+    <license>
+        <name>MIT License</name>
+        <url>http://www.opensource.org/licenses/mit-license.php</url>
+    </license>
+</licenses>
+
+<organization>
+    <name>David Mendoza</name>
+    <url>http://davidmendoza.org</url>
+</organization>
+
+<developers>
+    <developer>
+        <id>jdmr</id>
+        <name>J. David Mendoza</name>
+        <email>jdmendoza@swau.edu</email>
+    </developer>
+</developers>
+----
+
+Change everything to have your information on it.
+
 === Travis CI
 
 [quote, wikipedia.org]
@@ -389,3 +416,139 @@ $ mvn clean test
 ----
 
 Next, we're going to build a test that checks if the title of the first page we get is TODO, it's not right now, but we'll make it so later.
+
+On the Test Packages section we're going to create a new package called _home_ and in that package we'll create the _HomeControllerTests_ Java Class by right clicking the new package and choosing the Java Class option. The class needs to look like this:
+
+[source, java]
+----
+package org.davidmendoza.todo.home;
+
+import static org.hamcrest.Matchers.containsString;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class HomeControllerTests {
+
+    @Autowired
+    private WebApplicationContext wac;
+
+    private MockMvc mvc;
+
+    @Before
+    public void setup() {
+        this.mvc = MockMvcBuilders.webAppContextSetup(wac).build();
+    }
+
+    @Test
+    public void shouldShowHomePage() throws Exception {
+        mvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>TODO</title>")))
+                .andDo(print());
+    }
+
+}
+----
+
+NOTE: I'm removing most comments from classes for brevity, but it's recommended to keep them.
+
+If we run the tests again we should get 1 failing test. Which is good, don't worry. Now lets fix that!
+
+We create the package home on the Source Packages side and create a new java class on that package called _HomeController_ that should look like this:
+
+[source, java]
+-----
+package org.davidmendoza.todo.home;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/")
+public class HomeController {
+
+    @GetMapping
+    public String home() {
+        return "home";
+    }
+}
+-----
+
+Now we need the page that's going to be rendered and returned to the browser. We do that with a Thymeleaf template:
+
+[source, html]
+----
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO</title>
+    </head>
+    <body>
+        <h1>TODO</h1>
+    </body>
+</html>
+----
+
+Is just a plain html page but with 2 namespaces on lines 2 and 3 as part of the html tag. These namespaces enable Thymeleaf to use special tags to perform special actions while building the page. We're just declaring them without using them for now. Let's run our tests again:
+
+[source, sh]
+----
+$ mvn clean test
+----
+
+Awesome! Let's commit these changes to our _Version Control System_ before we break it.
+
+[source, sh]
+----
+$ git add .
+$ git commit -m "Created Hello Page"
+$ git push
+----
+
+Actually we haven't seen anything but code, how can we be confident that it actually worked! You're right, lets run it and open it on a browser on http://localhost:8080.
+
+[source, sh]
+----
+$ mvn spring-boot:run
+----
+
+Great! It works! Although I really don't like typing the whole _mvn spring-boot:run_ all the time I want to run the application. Let's open the pom.xml file on NetBeans with _ctrl+shift+o_ you pull up a window that will search for all the files on the open projects, just type _pom.xml_ and choose it from the list. And look for the build tag at the bottom of the file and add the _defaultGoal_ tag to make it look like this:
+
+[source, xml]
+----
+<build>
+    <defaultGoal>spring-boot:run</defaultGoal> # <1>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+----
+
+<1> This is the only line you need to add.
+
+And now you can stop the one that's running on the terminal (with _ctrl+c_), and run it again by just typing:
+
+[source, sh]
+----
+$ mvn
+----
+
+NOTE: If it doesn't work is because you didn't save the file.
