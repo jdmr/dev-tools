@@ -10,7 +10,7 @@ v1.0, 2016-09-28
 This workshop's objectives are to help you acquire tools that will allow you to be better prepared for when the time comes to look for a web developer or a web administrator position (so it's not 'how to code in java', or 'how to do C++ right').
 
 == Introduction
-To do web development we need to understand what it involves. It's simple really, but lets just state it to have a common ground. We'll have our user client which is going to open up a browser and type in the url box the address of our service. A server is going to be listening and will produce the html the client's browser needs to show what we want the client to see. To produce this content the server will probably need to access a repository, which most of the times is a database. The client then will start interacting with the application in the browser, the browser will send the information to the server to be processed and the server will store it in the database if it needs to.
+To do web development we need to understand what it involves. It's simple really but let's just state it to have a common ground. We'll have our user client which is going to open up a browser and type in the URL box the address of our service. A server is going to be listening and will produce the HTML the client's browser needs to show what we want the client to see. To produce this content the server will probably need to access a repository, which most of the times is a database. The client then will start interacting with the application in the browser, the browser will send the information to the server to be processed and the server will store it in the database if it needs to.
 
 == Developer Machine Setup
 === Linux
@@ -18,7 +18,7 @@ To do web development we need to understand what it involves. It's simple really
 Most of the deployments are done on UNIX based systems, so I found it more of a 'necessity' than 'a good to have' in my line of work. A lot of workspaces have limited IT budgets, and Linux gets you a lot of stuff for free. So that's why I want them to pick up this tool as we go.
 
 ==== Which distribution should I use?
-There are a lot of linux distributions out there, but most are based on only a few, one of the most solid ones is Debian, Fedora would be another one, and anyone will do as long as it allows to install packages and you make sure that the community behind it is big and knowledgable. I prefer the distributions based on Debian, so the instructions will be for Debian based distributions.
+There are a lot of Linux distributions out there, but most are based on only a few, one of the most solid ones is Debian, Fedora would be another one, and anyone will do as long as it allows to install packages and you make sure that the community behind it is big and knowledgeable. I prefer the distributions based on Debian, so the instructions will be for Debian based distributions.
 
 ==== Basic Linux Setup
 The Linux Operating System is an evolving environment. What this means is that the system is always being worked on and updated, some distributions provide expected timeframes for their releases, but the reality is that there are so many developers working on the different parts that conform the Linux Operating System that in between these timeframes there's a lot of little releases going on for different parts of the Operating System.
@@ -37,7 +37,7 @@ ln:: Creates hard or soft links.
 tar:: Combines files into a single file, it also extracts the files from that single file.
 zip & unzip:: Do the same thing as *_tar_* but with a different file format. Some distributions don't provide this tool by default so you might need to install it.
 
-For a Debian based distribution you need to run on a terminal:
+For a Debian-based distribution you need to run in a terminal:
 
 [source,sh]
 ----
@@ -53,15 +53,15 @@ Once the system has finished updating the lists, you need to run:
 $ sudo apt-get upgrade
 ----
 
-We need to keep doing these two instructions on a regular basis on our linux boxes to keep them up to date and secure.
+We need to keep doing these two instructions on a regular basis on our Linux boxes to keep them up to date and secure.
 
 ==== Vi Editor
 
-Vi is a powerful editor and it comes on almost every linux distribution. I'll show you the basics of this tool. To move around use *_j_* or *_k_*. To go to the end of the file is *_G_* and to go to the beginning of the file use *_gg_*. You'll notice that you can't modify the file even though you're in the right spot, that's because your in command mode, to insert changes where your at use *_i_*, to append use *_a_*, to add a new line use *_o_* and to go back to command mode press the *_esc_* key. Special commands start with a colon (*_:_*). For instance *_:q_* is quit, *_:w_* is save, and you can use them together to save and quit *_:wq_*. If you made changes and you try to quit without saving, it won't let you quit until you save or force quit with *_:q!_*.
+Vi is a powerful editor and it comes with almost every Linux distribution. I'll show you the basics of this tool. To move around use *_j_* or *_k_*. To go to the end of the file is *_G_* and to go to the beginning of the file use *_gg_*. You'll notice that you can't modify the file even though you're in the right spot, that's because you're in command mode, to insert changes where you're at use *_i_*, to append use *_a_*, to add a new line use *_o_* and to go back to command mode press the *_esc_* key. Special commands start with a colon (*_:_*). For instance *_:q_* is quit, *_:w_* is save, and you can use them together to save and quit *_:wq_*. If you made changes and you try to quit without saving, it won't let you quit until you save or force quit with *_:q!_*.
 
 === Java
 
-We'll proceed to setup Java on our machine by adding the java package repository url to our *_sources.list_* file.
+We'll proceed to set up Java on our machine by adding the java package repository URL to our *_sources.list_* file.
 
 [source,sh]
 ----
@@ -88,11 +88,11 @@ $ sudo vi /etc/profile # <5>
 
 <1> The new repository we added to the sources.list file is not trusted until we add the key with which every package on that repository is packaged. So by adding the key into our system we now trust this new repository.
 
-<2> We ask linux to go get the list of packages available on the new repository (as well as any other repositories on the sources.list file).
+<2> We ask Linux to go get the list of packages available on the new repository (as well as any other repositories on the sources.list file).
 
 <3> We install Java 8 on our system.
 
-<4> With the previous step Java is available on our system. The problem is that some of the tools we're using require an environment variable called JAVA_HOME. We could point directly to the directory where Java is at, and it would work, but when a new version of Java comes out, we would have to do this again and reload the environment by doing a logout and a login again. So to make that easier we'll add a soft link, and then when new version of java is installed we just change the soft link and everything works without having to reload the environment.
+<4> With the previous step Java is available on our system. The problem is that some of the tools we're using require an environment variable called JAVA_HOME. We could point directly to the directory where Java is at, and it would work, but when a new version of Java comes out, we would have to do this again and reload the environment by doing a logout and a login again. So to make that easier we'll add a soft link, and then when a new version of java is installed we just change the soft link and everything works without having to reload the environment.
 
 <5> We need to modify the *_/etc/profile_* file to add the JAVA_HOME environment variable.
 
@@ -104,13 +104,13 @@ export JAVA_HOME=/usr/local/java
 export PATH=$JAVA_HOME/bin:$PATH
 ----
 
-With this we have configured Java on our system.
+With this, we have configured Java on our system.
 
 === Maven
 
-Now we need to install Maven, our build tool. When we start building our tool you'll notice that we create java classes, html files, css files, some of these files need to be compiled, some need to be on a certain place in order to be found by the app. Maven helps us with all these chores.
+Now we need to install Maven, our build tool. When we start building our tool you'll notice that we create java classes, HTML files, CSS files, some of these files need to be compiled, some need to be in a certain place in order to be found by the app. Maven helps us with all these chores.
 
-The place to look for Maven is http://maven.apache.org, you can download it from there with your browser and skip the first instruction, or you can use *_wget_* (another linux tool that enables us to download a file without a browser) and continue with the rest of the instructions to install it.
+The place to look for Maven is http://maven.apache.org, you can download it from there with your browser and skip the first instruction, or you can use *_wget_* (another Linux tool that enables us to download a file without a browser) and continue with the rest of the instructions to install it.
 
 [source,sh]
 ----
@@ -141,7 +141,7 @@ export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH # <3>
 
 <3> We insert the $MAVEN_HOME/bin directory to the PATH.
 
-With those changes in place we save and quit the file. To get the environment variables to load on our terminal the easiest way is to sign out and sign back again, open a terminal and check that everything is in place with the following instructions:
+With those changes in place, we save and quit the file. To get the environment variables to load on our terminal the easiest way is to sign out and sign back again, open a terminal and check that everything is in place with the following instructions:
 
 [source,sh]
 ----
@@ -149,7 +149,7 @@ $ java -version
 $ mvn -v
 ----
 
-Both of them should run and show you version numbers. Finally our machine is ready for some coding!
+Both of them should run and show you version numbers. Finally, our machine is ready for some coding!
 
 == Let's Start Coding!
 
@@ -181,14 +181,14 @@ We wait for it to show the following line:
 ... com.example.DemoApplication              : Started DemoApplication in 2.476 seconds (JVM running for 8.941)
 ----
 
-We open a browser and go to http://localhost:8080 and we'll get a *_Whitelabel Error Page_* with a *_404_* near the bottom. What this means is that the app couldn't find a page to provide as a response to the client request. We'll fix that by creating it:
+We open a browser and go to http://localhost:8080 and we'll get a *_Whitelabel Error Page_* with a *_404_* near the bottom. What this means is that the app couldn't find a page to provide a response to the client request. We'll fix that by creating it:
 
 [source,sh]
 ----
 $ vi src/main/resources/static/index.html
 ----
 
-This will open the editor on a new document, remember that when you open vi your in command mode to actually edit the file you would have to go into *_INSERT_* mode by pressing the *_i_* key (command).
+This will open the editor on a new document, remember that when you open Vi you're in command mode to actually edit the file you would have to go into *_INSERT_* mode by pressing the *_i_* key (command).
 
 [source,html]
 ----
@@ -204,7 +204,7 @@ This will open the editor on a new document, remember that when you open vi your
 </html>
 ----
 
-Now visit http://localhost:8080 again and we should be getting the same *_Whitelabel Error Page_*. This means we need to redeploy the app. Go to the terminal where spring boot is running and use the combination of *_ctrl+shift+t_* keys to open a new tab. That tab should be on the project folder, just run to redeploy:
+Now visit http://localhost:8080 again and we should be getting the same *_Whitelabel Error Page_*. This means we need to redeploy the app. Go to the terminal where spring boot is running and use the combination of *_ctrl+shift+t_* keys to open a new tab. That tab should be in the project folder, just run to redeploy:
 
 [source,sh]
 ----
@@ -215,7 +215,7 @@ By the time this instruction ends, the redeploy should already be done, so just 
 
 === Atom
 
-Typing all that in in vi is really tiring, there has to be a better way right? Of course there is, I'm just trying to show you the ropes with vi that's all, we should probably switch to *_vim_* and use plugins but I'll let you try that one on your own. We're going to try Atom.
+Typing all that in in vi is really tiring, there has to be a better way right? Of course, there is, I'm just trying to show you the ropes with vi that's all, we should probably switch to *_vim_* and use plugins but I'll let you try that one on your own. We're going to try Atom.
 
 [quote, atom.io]
 Atom is a text editor that's modern, approachable, yet hackable to the core—a tool you can customize to do anything but also use productively without ever touching a config file.
@@ -228,9 +228,9 @@ $ sudo dpkg -i atom-amd64.deb # <2>
 $ sudo apt-get install -f # <3>
 ----
 
-<1> In order to manually install atom we need to install it's dependencies. Git being the one we don't have installed yet. Git is a version control tool we'll be using down the road, so it doesn't hurt to install it here.
+<1> In order to manually install atom we need to install its dependencies. Git being the one we don't have installed yet. Git is a version control tool we'll be using down the road, so it doesn't hurt to install it here.
 
-<2> Extract package to proper directory.
+<2> Extract package to the proper directory.
 
 <3> Install package.
 
@@ -242,7 +242,7 @@ $ cd ~/projects/demo
 $ atom .
 ----
 
-On the left we'll see a file manager with the text editor on the right. We'll navigate to src/main/resources/static and right click to create a new file called *_hello.html_*. Then we type *_html_* and then press the *_tab_* key, whoa! What just happened, well Atom comes with a few plugins preinstalled one of them being Emmet. This plugin has html shortcuts to help speed up html development. You can see what Emmet is capable of at http://emmet.io/.
+On the left, we'll see a file manager with the text editor on the right. We'll navigate to src/main/resources/static and right-click to create a new file called *_hello.html_*. Then we type *_html_* and then press the *_tab_* key, whoa! What just happened, well Atom comes with a few plugins preinstalled one of them being Emmet. This plugin has HTML shortcuts to help speed up HTML development. You can see what Emmet is capable of at http://emmet.io/.
 
 Save your changes and see your changes at http://localhost:8080/hello.html, if you get the 404 page again, you'll need to redeploy the app.
 
@@ -250,7 +250,7 @@ Save your changes and see your changes at http://localhost:8080/hello.html, if y
 
 image::start-spring-io.jpg[caption:"http://start.spring.io", alt="http://start.spring.io", link="http://start.spring.io"]
 
-Let's start the app we'll be using through out the workshop by going back to http://start.spring.io and renaming the artifact name to *_todo_* and adding *_Thymeleaf_* () and *_DevTools_* to the dependency list. Click on Generate Project to download zip file, extract it in our projects folder with:
+Let's start the app we'll be using throughout the workshop by going back to http://start.spring.io and renaming the artifact name to *_todo_* and adding *_Thymeleaf_* () and *_DevTools_* to the dependency list. Click on Generate Project to download zip file, extract it in our projects folder with:
 
 [source,sh]
 ----
@@ -260,10 +260,37 @@ $ cd todo
 $ atom .
 ----
 
+Open the _pom.xml_ file and add the following between the description end tag and the parent beginning tag:
+
+[source, xml]
+----
+<licenses>
+    <license>
+        <name>MIT License</name>
+        <url>http://www.opensource.org/licenses/mit-license.php</url>
+    </license>
+</licenses>
+
+<organization>
+    <name>David Mendoza</name>
+    <url>http://davidmendoza.org</url>
+</organization>
+
+<developers>
+    <developer>
+        <id>jdmr</id>
+        <name>J. David Mendoza</name>
+        <email>jdmendoza@swau.edu</email>
+    </developer>
+</developers>
+----
+
+Change everything to have your information on it.
+
 === Travis CI
 
 [quote, wikipedia.org]
-Travis CI is a hosted, distributed continuous integration service used to build and test software projects hosted at GitHub.
+Travis CI is a hosted, distributed continuous integration service used to build and test software projects hosted on GitHub.
 
 ==== Why do we need a tool like Travis?
 
@@ -280,11 +307,11 @@ By building our application alongside tests that validate that our application i
 [quote, git-scm.com]
 Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
-This confidence that we're talking about grows even more if we use a _Version Control System_ to manage our codebase. How so? Well, when you add changes and start adding new dependencies and make that big change that in your mind would work, but when you're actually building it you realize that it doesn't work, now what? You have all these new dependencies on your codebase, you've changed a bunch of classes, html, etc. to try and make it work, and now it's all a mess, if only there was a way of going to the way it was before I started adding this new feature. That's what a _Version Control System_ enables you to do. To go to any _version_ of the codebase with ease. The _Version Control Tool_ we're going to be using is *_Git_*. This _version control manager_ allows us to have a full blown _version control system_ in our computer, and if you want to use it to code from different computers and/or with different people, well, they all can have a copy of your repository and git has ways of synchronizing changes between the different repository copies.
+This confidence that we're talking about grows even more if we use a _Version Control System_ to manage our codebase. How so? Well, when you add changes and start adding new dependencies and make that big change that in your mind would work, but when you're actually building it you realize that it doesn't work, now what? You have all these new dependencies on your codebase, you've changed a bunch of classes, HTML, etc. to try and make it work, and now it's all a mess if only there was a way of going to the way it was before I started adding this new feature. That's what a _Version Control System_ enables you to do. To go to any _version_ of the codebase with ease. The _Version Control Tool_ we're going to be using is *_Git_*. This _version control manager_ allows us to have a full blown _version control system_ in our computer, and if you want to use it to code from different computers and/or with different people, well, they all can have a copy of your repository and git has ways of synchronizing changes between the different repository copies.
 
-Travis CI works in conjunction with Git to checkout your changes once you've made a commit. Travis CI doesn't actually connect to your computer to get the changes, it uses a service that's called *_Github_*. This service can hold a copy of your local repository and share it with other people or tools (_like Travis CI_). We'll get to that in a bit, but first let's configure Travis CI.
+Travis CI works in conjunction with Git to check out your changes once you've made a commit. Travis CI doesn't actually connect to your computer to get the changes, it uses a service that's called *_Github_*. This service can hold a copy of your local repository and share it with other people or tools (_like Travis CI_). We'll get to that in a bit, but first, let's configure Travis CI.
 
-In the root directory of our application we need to create a file called: _.travis.xml_ (notice the period in front of the file name)
+In the root directory of our application, we need to create a file called: _.travis.yml_ (notice the period in front of the file name)
 
 image::travis-yml.jpg[]
 
@@ -299,7 +326,7 @@ jdk:
   - oraclejdk8
 ----
 
-First we're telling Travis CI that the base code of our app is in Java, then that we won't need sudo privileges to execute our tests and finally what version of Java do we need to compile and run our tests.
+First, we're telling Travis CI that the base code of our app is in Java, then that we won't need sudo privileges to execute our tests and finally what version of Java do we need to compile and run our tests.
 
 We already installed Git to use Atom, but in case you didn't you would need to run this from the terminal shell:
 
@@ -330,12 +357,12 @@ git remote add origin https://github.com/david-mendoza/todo.git
 git push -u origin master
 ----
 
-Our build passed! Awesome! Now we need to let everyone know, right? To do that we go to http://travis-ci.org and click on the badge right next to our project and then choose Markdown from the options copy that code into the README.md file in atom. To see more detailed instructions from Travis CI go to https://docs.travis-ci.com/user/status-images. Now go to your terminal shell again and do:
+Our build passed! Awesome! Now we need to let everyone know, right? To do that we go to http://travis-ci.org and click on the badge right next to our project and then choose Markdown from the options copy that code into the README.md file in Atom. To see more detailed instructions from Travis CI go to https://docs.travis-ci.com/user/status-images. Now go to your terminal shell again and do:
 
 [source, sh]
 ----
 git add .
-git commit -m "Added travis build status badge to the README"
+git commit -m "Added Travis build status badge to the README"
 git push
 ----
 
@@ -344,15 +371,15 @@ Now when somebody loads your GitHub repository page they'll see that our code is
 === Thymeleaf
 
 [quote, thymeleaf.org]
-Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
+Thymeleaf is a modern server-side Java template engine for both the web and standalone environments.
 
-Our first iteration of our app is going to be a server-side rendered app. For this we would need JSP's (_Java Server Pages_) which have been discontinued by the community behind JEE (_Java Enterprise Edition_). JEE is a specification that defines tools to build enterprise grade applications with Java, we could follow that route in developing this application, but that road is a little more cumbersome. Spring was born of the need to simplify Java Enterprise development and has done such a great job that the current JEE spec pulled a lot of it's standards from how Spring does things. Doing JEE development now is a lot easier than before but in my opinion some things are still missing.
+Our first iteration of our app is going to be a server-side rendered app. For this, we would need JSP's (_Java Server Pages_) which have been discontinued by the community behind JEE (_Java Enterprise Edition_). JEE is a specification that defines tools to build enterprise-grade applications with Java, we could follow that route in developing this application, but that road is a little more cumbersome. Spring was born of the need to simplify Java Enterprise development and has done such a great job that the current JEE spec pulled a lot of its standards from how Spring does things. Doing JEE development now is a lot easier than before but in my opinion, some things are still missing.
 
 I don't want you to think that we're using Thymeleaf because JSP's got discontinued. Thymeleaf is a great tool and it provides a bunch of stuff that you can't get on JSP's alone, so I do believe that Thymeleaf is a _modern server-side_ rendering engine.
 
 === NetBeans
 
-It's nice to have a text editor that will help with html and simple file edits, but to do Java in a much more productive way we need an IDE, and there's where NetBeans comes in.
+It's nice to have a text editor that will help with HTML and simple file edits but to do Java in a much more productive way we need an IDE, and there's where NetBeans comes in.
 
 Download and install the JEE version of NetBeans from http://netbeans.org/downloads/. Open a terminal and go to the Downloads folder and do the following instructions there:
 
@@ -362,7 +389,7 @@ $ chmod +x netbeans-8.1-javaee-linux.sh
 $ ./netbeans-8.1-javaee-linux.sh
 ----
 
-The first instructions makes the file executable and the second actually starts the installer. Follow the instructions to install and enable the Apache Tomcat installation (we don't need it for the workshop, but you might need it later). On the screen where it asks for the JDK please add the JDK_HOME link we already created and click next:
+The first instructions make the file executable and the second actually starts the installer. Follow the instructions to install and enable the Apache Tomcat installation (we don't need it for the workshop, but you might need it later). On the screen where it asks for the JDK please add the JDK_HOME link we already created and click next:
 
 [source, sh]
 ----
@@ -373,7 +400,7 @@ Once installed we click on File > Open Project and then look for ~/projects/todo
 
 image::netbeans.jpg[]
 
-The first thing we need to do after we've opened a maven project is set it up by right clicking on the project name and then click on the Properties option. Then a new window will show up.
+The first thing we need to do after we've opened a maven project is set it up by right-clicking on the project name and then click on the Properties option. Then a new window will show up.
 
 image::netbeans-run-actions.jpg[]
 
@@ -381,7 +408,7 @@ Click on the Actions option on the left menu, and then on the right click on the
 
 === Code
 
-The Spring starter tool adds the classes in what in my opinion is the wrong folder. To fix it we add a new package todo the our current package schema. To do that we need to right click on the package name and select the New package option and type _todo_. Once you've finished creating both packages (source and test) drag the class in Source Packages to the new package and click on the Refactor button for both. Let's make sure we didn't break anything by testing the changes in the terminal type:
+The Spring starter tool adds the classes in what in my opinion is the wrong folder. To fix it we add a new package todo to our current package schema. To do that we need to right-click on the package name and select the New package option and type _todo_. Once you've finished creating both packages (source and test) drag the class in Source Packages to the new package and click on the Refactor button for both. Let's make sure we didn't break anything by testing the changes in the terminal type:
 
 [source, sh]
 ----
@@ -389,3 +416,5 @@ $ mvn clean test
 ----
 
 Next, we're going to build a test that checks if the title of the first page we get is TODO, it's not right now, but we'll make it so later.
+
+On the Test Packages section we're going to create a new package called _home_ and in that package, we'll create the _HomeController_ Java Class by right clicking the new package and choosing the New Java Class option
