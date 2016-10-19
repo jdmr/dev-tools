@@ -418,6 +418,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <style>
 .listingblock .pygments .hll { background-color: #ffffcc }
 .listingblock .pygments, .listingblock .pygments code { background: #f8f8f8; }
@@ -607,7 +608,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-get update</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">sudo apt-get update</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -618,7 +619,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-get upgrade</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">sudo apt-get upgrade</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -639,7 +640,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo vi /etc/apt/sources.list</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">sudo vi /etc/apt/sources.list</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -655,31 +656,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 <b class="conum">(1)</b>
-<span class="tok-nv">$ </span>sudo apt-get update <b class="conum">(2)</b>
-<span class="tok-nv">$ </span>sudo apt-get install oracle-java8-installer <b class="conum">(3)</b>
-<span class="tok-nv">$ </span>sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java <b class="conum">(4)</b>
-<span class="tok-nv">$ </span>sudo vi /etc/profile <b class="conum">(5)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="sh">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 <i class="conum" data-value="1"></i><b>(1)</b>
+sudo apt-get update <i class="conum" data-value="2"></i><b>(2)</b>
+sudo apt-get install oracle-java8-installer <i class="conum" data-value="3"></i><b>(3)</b>
+sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java <i class="conum" data-value="4"></i><b>(4)</b>
+sudo vi /etc/profile <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>The new repository we added to the sources.list file is not trusted until we add the key with which every package on that repository is packaged. So by adding the key into our system we now trust this new repository.</p>
-</li>
-<li>
-<p>We ask Linux to go get the list of packages available on the new repository (as well as any other repositories on the sources.list file).</p>
-</li>
-<li>
-<p>We install Java 8 on our system.</p>
-</li>
-<li>
-<p>With the previous step Java is available on our system. The problem is that some of the tools we&#8217;re using require an environment variable called JAVA_HOME. We could point directly to the directory where Java is at, and it would work, but when a new version of Java comes out, we would have to do this again and reload the environment by doing a logout and a login again. So to make that easier we&#8217;ll add a soft link, and then when a new version of java is installed we just change the soft link and everything works without having to reload the environment.</p>
-</li>
-<li>
-<p>We need to modify the <strong><em>/etc/profile</em></strong> file to add the JAVA_HOME environment variable.</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The new repository we added to the sources.list file is not trusted until we add the key with which every package on that repository is packaged. So by adding the key into our system we now trust this new repository.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We ask Linux to go get the list of packages available on the new repository (as well as any other repositories on the sources.list file).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We install Java 8 on our system.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>With the previous step Java is available on our system. The problem is that some of the tools we&#8217;re using require an environment variable called JAVA_HOME. We could point directly to the directory where Java is at, and it would work, but when a new version of Java comes out, we would have to do this again and reload the environment by doing a logout and a login again. So to make that easier we&#8217;ll add a soft link, and then when a new version of java is installed we just change the soft link and everything works without having to reload the environment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>We need to modify the <strong><em>/etc/profile</em></strong> file to add the JAVA_HOME environment variable.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>At the end of the file (<strong><em>G</em></strong>) we need to add (<strong><em>o</em></strong>) this lines:</p>
@@ -704,19 +710,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>wget http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-<span class="tok-nv">$ </span>tar -xvzf apache-maven-3.3.9-bin.tar.gz
-<span class="tok-nv">$ </span>sudo mkdir /opt/tools
-<span class="tok-nv">$ </span>sudo mv apache-maven-3.3.9 /opt/tools
-<span class="tok-nv">$ </span>sudo ln -s /opt/tools/apache-maven-3.3.9 /usr/local/maven
-<span class="tok-nv">$ </span>sudo vi /etc/profile</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">wget http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+tar -xvzf apache-maven-3.3.9-bin.tar.gz
+sudo mkdir /opt/tools
+sudo mv apache-maven-3.3.9 /opt/tools
+sudo ln -s /opt/tools/apache-maven-3.3.9 /usr/local/maven
+sudo vi /etc/profile</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 Keep in mind that new releases come out all the time. Do the same steps for the newer versions of the tool.
@@ -732,31 +738,34 @@ Keep in mind that new releases come out all the time. Do the same steps for the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">export </span><span class="tok-nv">JAVA_HOME</span><span class="tok-o">=</span>/usr/local/java <b class="conum">(1)</b>
-<span class="tok-nb">export </span><span class="tok-nv">MAVEN_HOME</span><span class="tok-o">=</span>/usr/local/maven <b class="conum">(2)</b>
-<span class="tok-nb">export </span><span class="tok-nv">PATH</span><span class="tok-o">=</span><span class="tok-nv">$JAVA_HOME</span>/bin:<span class="tok-nv">$MAVEN_HOME</span>/bin:<span class="tok-nv">$PATH</span> <b class="conum">(3)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">export </span><span class="tok-nv">JAVA_HOME</span><span class="tok-o">=</span>/usr/local/java <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="tok-nb">export </span><span class="tok-nv">MAVEN_HOME</span><span class="tok-o">=</span>/usr/local/maven <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="tok-nb">export </span><span class="tok-nv">PATH</span><span class="tok-o">=</span><span class="tok-nv">$JAVA_HOME</span>/bin:<span class="tok-nv">$MAVEN_HOME</span>/bin:<span class="tok-nv">$PATH</span> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>Remains the same.</p>
-</li>
-<li>
-<p>New line adding the MAVEN_HOME environment variable.</p>
-</li>
-<li>
-<p>We insert the $MAVEN_HOME/bin directory to the PATH.</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Remains the same.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>New line adding the MAVEN_HOME environment variable.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We insert the $MAVEN_HOME/bin directory to the PATH.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>With those changes in place, we save and quit the file. To get the environment variables to load on our terminal the easiest way is to sign out and sign back again, open a terminal and check that everything is in place with the following instructions:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>java -version
-<span class="tok-nv">$ </span>mvn -v</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">java -version
+mvn -v</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -778,11 +787,11 @@ Keep in mind that new releases come out all the time. Do the same steps for the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">cd </span>Downloads
-<span class="tok-nv">$ </span>unzip demo.zip
-<span class="tok-nv">$ </span>mkdir ~/projects
-<span class="tok-nv">$ </span>mv demo ~/projects
-<span class="tok-nv">$ </span><span class="tok-nb">cd</span> ~/projects/demo</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">cd </span>Downloads
+unzip demo.zip
+mkdir ~/projects
+mv demo ~/projects
+<span class="tok-nb">cd</span> ~/projects/demo</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -790,7 +799,7 @@ Keep in mind that new releases come out all the time. Do the same steps for the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn spring-boot:run</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">mvn spring-boot:run</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -806,7 +815,7 @@ Keep in mind that new releases come out all the time. Do the same steps for the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>vi src/main/resources/static/index.html</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">vi src/main/resources/static/index.html</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -831,7 +840,7 @@ Keep in mind that new releases come out all the time. Do the same steps for the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn package -DskipTests<span class="tok-o">=</span><span class="tok-nb">true</span></code></pre>
+<pre class="pygments highlight"><code data-lang="sh">mvn package -DskipTests<span class="tok-o">=</span><span class="tok-nb">true</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -856,31 +865,34 @@ Atom is a text editor that&#8217;s modern, approachable, yet hackable to the cor
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>$ sudo apt-get install git <b class="conum">(1)</b>
-$ sudo dpkg -i atom-amd64.deb <b class="conum">(2)</b>
-$ sudo apt-get install -f <b class="conum">(3)</b></pre>
+<pre class="pygments highlight"><code data-lang="sh">sudo apt-get install git <i class="conum" data-value="1"></i><b>(1)</b>
+sudo dpkg -i atom-amd64.deb <i class="conum" data-value="2"></i><b>(2)</b>
+sudo apt-get install -f <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>In order to manually install atom we need to install its dependencies. Git being the one we don&#8217;t have installed yet. Git is a version control tool we&#8217;ll be using down the road, so it doesn&#8217;t hurt to install it here.</p>
-</li>
-<li>
-<p>Extract package to the proper directory.</p>
-</li>
-<li>
-<p>Install package.</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In order to manually install atom we need to install its dependencies. Git being the one we don&#8217;t have installed yet. Git is a version control tool we&#8217;ll be using down the road, so it doesn&#8217;t hurt to install it here.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Extract package to the proper directory.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Install package.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>We open atom from the terminal by:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">cd</span> ~/projects/demo
-<span class="tok-nv">$ </span>atom .</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">cd</span> ~/projects/demo
+atom .</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -902,10 +914,10 @@ $ sudo apt-get install -f <b class="conum">(3)</b></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">cd</span> ~/projects/
-<span class="tok-nv">$ </span>unzip ~/Downloads/todo.zip
-<span class="tok-nv">$ </span><span class="tok-nb">cd </span>todo
-<span class="tok-nv">$ </span>atom .</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">cd</span> ~/projects/
+unzip ~/Downloads/todo.zip
+<span class="tok-nb">cd </span>todo
+atom .</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -955,7 +967,7 @@ Travis CI is a hosted, distributed continuous integration service used to build 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn <span class="tok-nb">test</span></code></pre>
+<pre class="pygments highlight"><code data-lang="sh">mvn <span class="tok-nb">test</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1007,7 +1019,7 @@ Git is a free and open source distributed version control system designed to han
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-get install git</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">sudo apt-get install git</code></pre>
 </div>
 </div>
 </div>
@@ -1086,8 +1098,8 @@ Thymeleaf is a modern server-side Java template engine for both the web and stan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>chmod +x netbeans-8.1-javaee-linux.sh
-<span class="tok-nv">$ </span>./netbeans-8.1-javaee-linux.sh</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">chmod +x netbeans-8.1-javaee-linux.sh
+./netbeans-8.1-javaee-linux.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1125,7 +1137,7 @@ Thymeleaf is a modern server-side Java template engine for both the web and stan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn clean <span class="tok-nb">test</span></code></pre>
+<pre class="pygments highlight"><code data-lang="sh">mvn clean <span class="tok-nb">test</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1182,7 +1194,7 @@ Thymeleaf is a modern server-side Java template engine for both the web and stan
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 I&#8217;m removing most comments from classes for brevity, but it&#8217;s recommended to keep them.
@@ -1237,7 +1249,7 @@ I&#8217;m removing most comments from classes for brevity, but it&#8217;s recomm
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn clean <span class="tok-nb">test</span></code></pre>
+<pre class="pygments highlight"><code data-lang="sh">mvn clean <span class="tok-nb">test</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1245,9 +1257,9 @@ I&#8217;m removing most comments from classes for brevity, but it&#8217;s recomm
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>git add .
-<span class="tok-nv">$ </span>git commit -m <span class="tok-s2">&quot;Created Hello Page&quot;</span>
-<span class="tok-nv">$ </span>git push</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">git add .
+git commit -m <span class="tok-s2">&quot;Created Hello Page&quot;</span>
+git push</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1255,7 +1267,7 @@ I&#8217;m removing most comments from classes for brevity, but it&#8217;s recomm
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn spring-boot:run</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">mvn spring-boot:run</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1264,7 +1276,7 @@ I&#8217;m removing most comments from classes for brevity, but it&#8217;s recomm
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="xml"><span class="tok-nt">&lt;build&gt;</span>
-    <span class="tok-nt">&lt;defaultGoal&gt;</span>spring-boot:run<span class="tok-nt">&lt;/defaultGoal&gt;</span> <b class="conum">(1)</b>
+    <span class="tok-nt">&lt;defaultGoal&gt;</span>spring-boot:run<span class="tok-nt">&lt;/defaultGoal&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
     <span class="tok-nt">&lt;plugins&gt;</span>
         <span class="tok-nt">&lt;plugin&gt;</span>
             <span class="tok-nt">&lt;groupId&gt;</span>org.springframework.boot<span class="tok-nt">&lt;/groupId&gt;</span>
@@ -1275,18 +1287,19 @@ I&#8217;m removing most comments from classes for brevity, but it&#8217;s recomm
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>This is the only line you need to add.</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This is the only line you need to add.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>And now you can stop the one that&#8217;s running on the terminal (with <em>ctrl+c</em>), and run it again by just typing:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn</code></pre>
+<pre class="pygments highlight"><code data-lang="sh">mvn</code></pre>
 </div>
 </div>
 </div>
@@ -1684,7 +1697,7 @@ Bootstrap is the most popular HTML, CSS, and JS framework for developing respons
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2016-10-19 09:10:08 CDT
+Last updated 2016-10-19 09:41:48 CDT
 </div>
 </div>
 </body>

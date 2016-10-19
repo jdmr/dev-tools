@@ -5,6 +5,7 @@ v1.0, 2016-10-19
 :toc: left
 :imagesdir: assets/images
 :source-highlighter: pygments
+:icons: font
 
 == Objectives
 This workshop's objectives are to help you acquire tools that will allow you to be better prepared for when the time comes to look for a web developer or a web administrator position (so it's not 'how to code in java', or 'how to do C++ right').
@@ -41,7 +42,7 @@ For a Debian-based distribution you need to run in a terminal:
 
 [source,sh]
 ----
-$ sudo apt-get update
+sudo apt-get update
 ----
 
 You'll notice the first word of this instruction is *_sudo_*. Most Linux systems have a super user called *_root_*. This user can do everything on the system, even destroy it. To prevent users from doing _stuff_ to the system without warning, the *_sudo_* instruction was created. It allows the user granted this privilege to run instructions as root. The next instruction is *_apt-get_* which is how Debian based systems interact with the remote repositories list and the local one. And finally, *_update_* is to sync the remote package repositories list with the local one.
@@ -50,7 +51,7 @@ Once the system has finished updating the lists, you need to run:
 
 [source,sh]
 ----
-$ sudo apt-get upgrade
+sudo apt-get upgrade
 ----
 
 We need to keep doing these two instructions on a regular basis on our Linux boxes to keep them up to date and secure.
@@ -65,7 +66,7 @@ We'll proceed to set up Java on our machine by adding the java package repositor
 
 [source,sh]
 ----
-$ sudo vi /etc/apt/sources.list
+sudo vi /etc/apt/sources.list
 ----
 
 Go to the end of the file (*_G_*) and add a new line (*_o_*) and paste the following line:
@@ -79,11 +80,11 @@ We save and exit the file by getting out of *_INSERT_* mode by pressing the *_es
 
 [source,sh]
 ----
-$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 # <1>
-$ sudo apt-get update # <2>
-$ sudo apt-get install oracle-java8-installer # <3>
-$ sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java # <4>
-$ sudo vi /etc/profile # <5>
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 # <1>
+sudo apt-get update # <2>
+sudo apt-get install oracle-java8-installer # <3>
+sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java # <4>
+sudo vi /etc/profile # <5>
 ----
 
 <1> The new repository we added to the sources.list file is not trusted until we add the key with which every package on that repository is packaged. So by adding the key into our system we now trust this new repository.
@@ -114,12 +115,12 @@ The place to look for Maven is http://maven.apache.org, you can download it from
 
 [source,sh]
 ----
-$ wget http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-$ tar -xvzf apache-maven-3.3.9-bin.tar.gz
-$ sudo mkdir /opt/tools
-$ sudo mv apache-maven-3.3.9 /opt/tools
-$ sudo ln -s /opt/tools/apache-maven-3.3.9 /usr/local/maven
-$ sudo vi /etc/profile
+wget http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+tar -xvzf apache-maven-3.3.9-bin.tar.gz
+sudo mkdir /opt/tools
+sudo mv apache-maven-3.3.9 /opt/tools
+sudo ln -s /opt/tools/apache-maven-3.3.9 /usr/local/maven
+sudo vi /etc/profile
 ----
 
 NOTE: Keep in mind that new releases come out all the time. Do the same steps for the newer versions of the tool.
@@ -145,8 +146,8 @@ With those changes in place, we save and quit the file. To get the environment v
 
 [source,sh]
 ----
-$ java -version
-$ mvn -v
+java -version
+mvn -v
 ----
 
 Both of them should run and show you version numbers. Finally, our machine is ready for some coding!
@@ -161,18 +162,18 @@ Let's do that! Go to http://start.spring.io and on the dependencies side type We
 
 [source,sh]
 ----
-$ cd Downloads
-$ unzip demo.zip
-$ mkdir ~/projects
-$ mv demo ~/projects
-$ cd ~/projects/demo
+cd Downloads
+unzip demo.zip
+mkdir ~/projects
+mv demo ~/projects
+cd ~/projects/demo
 ----
 
 We now run our demo app with the following instruction:
 
 [source,sh]
 ----
-$ mvn spring-boot:run
+mvn spring-boot:run
 ----
 
 We wait for it to show the following line:
@@ -185,7 +186,7 @@ We open a browser and go to http://localhost:8080 and we'll get a *_Whitelabel E
 
 [source,sh]
 ----
-$ vi src/main/resources/static/index.html
+vi src/main/resources/static/index.html
 ----
 
 This will open the editor on a new document, remember that when you open Vi you're in command mode to actually edit the file you would have to go into *_INSERT_* mode by pressing the *_i_* key (command).
@@ -206,9 +207,9 @@ This will open the editor on a new document, remember that when you open Vi you'
 
 Now visit http://localhost:8080 again and we should be getting the same *_Whitelabel Error Page_*. This means we need to redeploy the app. Go to the terminal where spring boot is running and use the combination of *_ctrl+shift+t_* keys to open a new tab. That tab should be in the project folder, just run to redeploy:
 
-[source,sh]
+[source, sh]
 ----
-$ mvn package -DskipTests=true
+mvn package -DskipTests=true
 ----
 
 By the time this instruction ends, the redeploy should already be done, so just go visit http://localhost:8080 and you should get the hello world page.
@@ -222,10 +223,11 @@ Atom is a text editor that's modern, approachable, yet hackable to the core—a 
 
 Just go to http://atom.io in your browser download the .deb file and install it on your system with:
 
+[source, sh]
 ----
-$ sudo apt-get install git # <1>
-$ sudo dpkg -i atom-amd64.deb # <2>
-$ sudo apt-get install -f # <3>
+sudo apt-get install git # <1>
+sudo dpkg -i atom-amd64.deb # <2>
+sudo apt-get install -f # <3>
 ----
 
 <1> In order to manually install atom we need to install its dependencies. Git being the one we don't have installed yet. Git is a version control tool we'll be using down the road, so it doesn't hurt to install it here.
@@ -236,10 +238,10 @@ $ sudo apt-get install -f # <3>
 
 We open atom from the terminal by:
 
-[source,sh]
+[source, sh]
 ----
-$ cd ~/projects/demo
-$ atom .
+cd ~/projects/demo
+atom .
 ----
 
 On the left, we'll see a file manager with the text editor on the right. We'll navigate to src/main/resources/static and right-click to create a new file called *_hello.html_*. Then we type *_html_* and then press the *_tab_* key, whoa! What just happened, well Atom comes with a few plugins preinstalled one of them being Emmet. This plugin has HTML shortcuts to help speed up HTML development. You can see what Emmet is capable of at http://emmet.io/.
@@ -252,12 +254,12 @@ image::start-spring-io.jpg[caption:"http://start.spring.io", alt="http://start.s
 
 Let's start the app we'll be using throughout the workshop by going back to http://start.spring.io and renaming the artifact name to *_todo_* and adding *_Thymeleaf_* () and *_DevTools_* to the dependency list. Click on Generate Project to download zip file, extract it in our projects folder with:
 
-[source,sh]
+[source, sh]
 ----
-$ cd ~/projects/
-$ unzip ~/Downloads/todo.zip
-$ cd todo
-$ atom .
+cd ~/projects/
+unzip ~/Downloads/todo.zip
+cd todo
+atom .
 ----
 
 Open the _pom.xml_ file and add the following between the description end tag and the parent beginning tag:
@@ -296,9 +298,9 @@ Travis CI is a hosted, distributed continuous integration service used to build 
 
 When you're building an application is always important to make sure that whatever you've built is working properly and you also want to make sure that you haven't broken anything else in the process. That's why you need a testing infrastructure. Maven already provides a way of testing your code if you have tests to run. And Spring Boot comes with JUnit support to build those tests, as a matter of fact, the project that came in the zip file already has a test in there and you can run it by going to the terminal and running the following instruction on the project's folder:
 
-[source,sh]
+[source, sh]
 ----
-$ mvn test
+mvn test
 ----
 
 By building our application alongside tests that validate that our application is doing what it's supposed to do, our application will be a lot more solid when deployed. And when you code and have to introduce a big change to the codebase you can make it without wondering if something broke.
@@ -317,7 +319,7 @@ image::travis-yml.jpg[]
 
 The content of the file as you can see in the image is:
 
-[source,yaml]
+[source, yaml]
 ----
 language: java
 sudo: false
@@ -330,9 +332,9 @@ First, we're telling Travis CI that the base code of our app is in Java, then th
 
 We already installed Git to use Atom, but in case you didn't you would need to run this from the terminal shell:
 
-[source,sh]
+[source, sh]
 ----
-$ sudo apt-get install git
+sudo apt-get install git
 ----
 
 === GitHub
@@ -385,8 +387,8 @@ Download and install the JEE version of NetBeans from http://netbeans.org/downlo
 
 [source, sh]
 ----
-$ chmod +x netbeans-8.1-javaee-linux.sh
-$ ./netbeans-8.1-javaee-linux.sh
+chmod +x netbeans-8.1-javaee-linux.sh
+./netbeans-8.1-javaee-linux.sh
 ----
 
 The first instructions make the file executable and the second actually starts the installer. Follow the instructions to install and enable the Apache Tomcat installation (we don't need it for the workshop, but you might need it later). On the screen where it asks for the JDK please add the JDK_HOME link we already created and click next:
@@ -412,7 +414,7 @@ The Spring starter tool adds the classes in what in my opinion is the wrong fold
 
 [source, sh]
 ----
-$ mvn clean test
+mvn clean test
 ----
 
 Next, we're going to build a test that checks if the title of the first page we get is TODO, it's not right now, but we'll make it so later.
@@ -508,23 +510,23 @@ Is just a plain HTML page but with 2 namespaces on lines 2 and 3 as part of the 
 
 [source, sh]
 ----
-$ mvn clean test
+mvn clean test
 ----
 
 Awesome! Let's commit these changes to our _Version Control System_ before we break it.
 
 [source, sh]
 ----
-$ git add .
-$ git commit -m "Created Hello Page"
-$ git push
+git add .
+git commit -m "Created Hello Page"
+git push
 ----
 
 Actually, we haven't seen anything but code, how can we be confident that it actually worked! You're right, let's run it and open it on a browser on http://localhost:8080.
 
 [source, sh]
 ----
-$ mvn spring-boot:run
+mvn spring-boot:run
 ----
 
 Great! It works! Although I really don't like typing _mvn spring-boot:run_ every time I want to run the application, it's too long for a repetitive process. Let's open the pom.xml file on NetBeans with _ctrl+shift+o_ you pull up a window that will search for all the files on the open projects, just type _pom.xml_ and choose it from the list. And look for the build tag at the bottom of the file and add the _defaultGoal_ tag to make it look like this:
@@ -548,7 +550,7 @@ And now you can stop the one that's running on the terminal (with _ctrl+c_), and
 
 [source, sh]
 ----
-$ mvn
+mvn
 ----
 
 === TODO v1
