@@ -608,7 +608,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">sudo apt-get update</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-get update</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -619,7 +619,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">sudo apt-get upgrade</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-get upgrade</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -640,7 +640,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">sudo vi /etc/apt/sources.list</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo vi /etc/apt/sources.list</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -656,11 +656,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 <i class="conum" data-value="1"></i><b>(1)</b>
-sudo apt-get update <i class="conum" data-value="2"></i><b>(2)</b>
-sudo apt-get install oracle-java8-installer <i class="conum" data-value="3"></i><b>(3)</b>
-sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java <i class="conum" data-value="4"></i><b>(4)</b>
-sudo vi /etc/profile <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="tok-nv">$ </span>sudo apt-get update <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="tok-nv">$ </span>sudo apt-get install oracle-java8-installer <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="tok-nv">$ </span>sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java <i class="conum" data-value="4"></i><b>(4)</b>
+<span class="tok-nv">$ </span>sudo vi /etc/profile <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -710,12 +710,12 @@ sudo vi /etc/profile <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">wget http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-tar -xvzf apache-maven-3.3.9-bin.tar.gz
-sudo mkdir /opt/tools
-sudo mv apache-maven-3.3.9 /opt/tools
-sudo ln -s /opt/tools/apache-maven-3.3.9 /usr/local/maven
-sudo vi /etc/profile</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>wget http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+<span class="tok-nv">$ </span>tar -xvzf apache-maven-3.3.9-bin.tar.gz
+<span class="tok-nv">$ </span>sudo mkdir /opt/tools
+<span class="tok-nv">$ </span>sudo mv apache-maven-3.3.9 /opt/tools
+<span class="tok-nv">$ </span>sudo ln -s /opt/tools/apache-maven-3.3.9 /usr/local/maven
+<span class="tok-nv">$ </span>sudo vi /etc/profile</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -764,8 +764,8 @@ Keep in mind that new releases come out all the time. Do the same steps for the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">java -version
-mvn -v</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>java -version
+<span class="tok-nv">$ </span>mvn -v</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -783,15 +783,15 @@ mvn -v</code></pre>
 <p>Spring Boot is a tool part of the Spring Framework that enables developers to start quickly, they take care of setting up the application with opinionated defaults. This makes it easy to take advantage of what the Spring Framework has to offer. Without having to know too much you are able to build a solid application in minutes.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s do that! Go to <a href="http://start.spring.io" class="bare">http://start.spring.io</a> and on the dependencies side type Web, hit enter to add it, and then type Devtools and hit enter again and then click on the Generate Project button, this will create a demo.zip file for you. Unzip it and move it to your projects folder</p>
+<p>Let&#8217;s do that! Go to <a href="http://start.spring.io" class="bare">http://start.spring.io</a> and on the dependencies side type <strong>Web</strong>, hit enter to add it, and then type <strong>Devtools</strong> and hit enter again and then click on the Generate Project button, this will create a demo.zip file for you. Unzip it and move it to your projects folder</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">cd </span>Downloads
-unzip demo.zip
-mkdir ~/projects
-mv demo ~/projects
-<span class="tok-nb">cd</span> ~/projects/demo</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">cd </span>Downloads
+<span class="tok-nv">$ </span>unzip demo.zip
+<span class="tok-nv">$ </span>mkdir ~/projects
+<span class="tok-nv">$ </span>mv demo ~/projects
+<span class="tok-nv">$ </span><span class="tok-nb">cd</span> ~/projects/demo</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -799,7 +799,7 @@ mv demo ~/projects
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">mvn spring-boot:run</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn spring-boot:run</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -807,7 +807,7 @@ mv demo ~/projects
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>... com.example.DemoApplication              : Started DemoApplication in 2.476 seconds (JVM running for 8.941)</pre>
+<pre class="pygments highlight"><code data-lang="sh">... com.example.DemoApplication              : Started DemoApplication in 2.476 seconds <span class="tok-o">(</span>JVM running <span class="tok-k">for</span> 8.941<span class="tok-o">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -815,7 +815,7 @@ mv demo ~/projects
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">vi src/main/resources/static/index.html</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>vi src/main/resources/static/index.html</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -840,7 +840,7 @@ mv demo ~/projects
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">mvn package -DskipTests<span class="tok-o">=</span><span class="tok-nb">true</span></code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn package -DskipTests<span class="tok-o">=</span><span class="tok-nb">true</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -865,9 +865,9 @@ Atom is a text editor that&#8217;s modern, approachable, yet hackable to the cor
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">sudo apt-get install git <i class="conum" data-value="1"></i><b>(1)</b>
-sudo dpkg -i atom-amd64.deb <i class="conum" data-value="2"></i><b>(2)</b>
-sudo apt-get install -f <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-get install git <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="tok-nv">$ </span>sudo dpkg -i atom-amd64.deb <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="tok-nv">$ </span>sudo apt-get install -f <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -891,8 +891,8 @@ sudo apt-get install -f <i class="conum" data-value="3"></i><b>(3)</b></code></p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">cd</span> ~/projects/demo
-atom .</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">cd</span> ~/projects/demo
+<span class="tok-nv">$ </span>atom .</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -914,10 +914,10 @@ atom .</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">cd</span> ~/projects/
-unzip ~/Downloads/todo.zip
-<span class="tok-nb">cd </span>todo
-atom .</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">cd</span> ~/projects/
+<span class="tok-nv">$ </span>unzip ~/Downloads/todo.zip
+<span class="tok-nv">$ </span><span class="tok-nb">cd </span>todo
+<span class="tok-nv">$ </span>atom .</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -967,7 +967,7 @@ Travis CI is a hosted, distributed continuous integration service used to build 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">mvn <span class="tok-nb">test</span></code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn <span class="tok-nb">test</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1049,12 +1049,12 @@ GitHub is home to all kinds of software projects, from simple programs to todayâ
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">echo</span> <span class="tok-s2">&quot;# todo&quot;</span> &gt;&gt; README.md
-git init
-git add .
-git commit -m <span class="tok-s2">&quot;first commit&quot;</span>
-git remote add origin https://github.com/david-mendoza/todo.git
-git push -u origin master</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">echo</span> <span class="tok-s2">&quot;# todo&quot;</span> &gt;&gt; README.md
+<span class="tok-nv">$ </span>git init
+<span class="tok-nv">$ </span>git add .
+<span class="tok-nv">$ </span>git commit -m <span class="tok-s2">&quot;first commit&quot;</span>
+<span class="tok-nv">$ </span>git remote add origin https://github.com/david-mendoza/todo.git
+<span class="tok-nv">$ </span>git push -u origin master</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1062,9 +1062,9 @@ git push -u origin master</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">git add .
-git commit -m <span class="tok-s2">&quot;Added Travis build status badge to the README&quot;</span>
-git push</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>git add .
+<span class="tok-nv">$ </span>git commit -m <span class="tok-s2">&quot;Added Travis build status badge to the README&quot;</span>
+<span class="tok-nv">$ </span>git push</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1098,8 +1098,8 @@ Thymeleaf is a modern server-side Java template engine for both the web and stan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">chmod +x netbeans-8.1-javaee-linux.sh
-./netbeans-8.1-javaee-linux.sh</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>chmod +x netbeans-8.1-javaee-linux.sh
+<span class="tok-nv">$ </span>./netbeans-8.1-javaee-linux.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1107,7 +1107,7 @@ Thymeleaf is a modern server-side Java template engine for both the web and stan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">/usr/local/java</code></pre>
+<pre class="pygments highlight"><code>/usr/local/java</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1137,7 +1137,7 @@ Thymeleaf is a modern server-side Java template engine for both the web and stan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">mvn clean <span class="tok-nb">test</span></code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn clean <span class="tok-nb">test</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1148,7 +1148,46 @@ Thymeleaf is a modern server-side Java template engine for both the web and stan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span class="tok-kn">package</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">davidmendoza</span><span class="tok-o">.</span><span class="tok-na">todo</span><span class="tok-o">.</span><span class="tok-na">home</span><span class="tok-o">;</span>
+<pre class="pygments highlight"><code data-lang="java"><table class="pyhltable"><tr><td class="linenos"><div class="linenodiv"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</div></td><td class="code"><span class="tok-kn">package</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">davidmendoza</span><span class="tok-o">.</span><span class="tok-na">todo</span><span class="tok-o">.</span><span class="tok-na">home</span><span class="tok-o">;</span>
 
 <span class="tok-kn">import</span> <span class="tok-nn">static</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">hamcrest</span><span class="tok-o">.</span><span class="tok-na">Matchers</span><span class="tok-o">.</span><span class="tok-na">containsString</span><span class="tok-o">;</span>
 <span class="tok-kn">import</span> <span class="tok-nn">org.junit.Before</span><span class="tok-o">;</span>
@@ -1187,7 +1226,8 @@ Thymeleaf is a modern server-side Java template engine for both the web and stan
                 <span class="tok-o">.</span><span class="tok-na">andDo</span><span class="tok-o">(</span><span class="tok-n">print</span><span class="tok-o">());</span>
     <span class="tok-o">}</span>
 
-<span class="tok-o">}</span></code></pre>
+<span class="tok-o">}</span>
+</td></tr></table></code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1210,7 +1250,21 @@ I&#8217;m removing most comments from classes for brevity, but it&#8217;s recomm
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span class="tok-kn">package</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">davidmendoza</span><span class="tok-o">.</span><span class="tok-na">todo</span><span class="tok-o">.</span><span class="tok-na">home</span><span class="tok-o">;</span>
+<pre class="pygments highlight"><code data-lang="java"><table class="pyhltable"><tr><td class="linenos"><div class="linenodiv"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</div></td><td class="code"><span class="tok-kn">package</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">davidmendoza</span><span class="tok-o">.</span><span class="tok-na">todo</span><span class="tok-o">.</span><span class="tok-na">home</span><span class="tok-o">;</span>
 
 <span class="tok-kn">import</span> <span class="tok-nn">org.springframework.stereotype.Controller</span><span class="tok-o">;</span>
 <span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.GetMapping</span><span class="tok-o">;</span>
@@ -1224,7 +1278,8 @@ I&#8217;m removing most comments from classes for brevity, but it&#8217;s recomm
     <span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">home</span><span class="tok-o">()</span> <span class="tok-o">{</span>
         <span class="tok-k">return</span> <span class="tok-s">&quot;home&quot;</span><span class="tok-o">;</span>
     <span class="tok-o">}</span>
-<span class="tok-o">}</span></code></pre>
+<span class="tok-o">}</span>
+</td></tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1249,7 +1304,7 @@ I&#8217;m removing most comments from classes for brevity, but it&#8217;s recomm
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">mvn clean <span class="tok-nb">test</span></code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn clean <span class="tok-nb">test</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1257,9 +1312,9 @@ I&#8217;m removing most comments from classes for brevity, but it&#8217;s recomm
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">git add .
-git commit -m <span class="tok-s2">&quot;Created Hello Page&quot;</span>
-git push</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>git add .
+<span class="tok-nv">$ </span>git commit -m <span class="tok-s2">&quot;Created Hello Page&quot;</span>
+<span class="tok-nv">$ </span>git push</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1267,7 +1322,7 @@ git push</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">mvn spring-boot:run</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn spring-boot:run</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1299,7 +1354,7 @@ git push</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="sh">mvn</code></pre>
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn</code></pre>
 </div>
 </div>
 </div>
@@ -1697,7 +1752,7 @@ Bootstrap is the most popular HTML, CSS, and JS framework for developing respons
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2016-10-19 09:41:48 CDT
+Last updated 2016-10-19 09:50:50 CDT
 </div>
 </div>
 </body>
