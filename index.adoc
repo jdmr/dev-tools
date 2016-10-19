@@ -680,7 +680,21 @@ If we want to see it on a display that's not as big as our desktop computer it w
 
 image::todo-bootstrap-mobile.jpg[]
 
-Now, let's add a method to our HomeController to actually add the todo.
+To make this a functional page we'll need to add the code that handles the todo creation. First, we'll start by adding the following code before the closing bracket at the end of our HomeControllerTests.java file:
+
+[source, java, linenums]
+----
+@Test
+public void shouldAddTodo() throws Exception {
+    mvc.perform(post("/?name=test"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(containsString("<td>test</td>")))
+            .andDo(print());
+
+}
+----
+
+If you run the test right now with _mvn test_ it should fail because it's not implemented yet. The implementation goes in the HomeController.java file.
 
 [source, java, linenums]
 ----
@@ -714,7 +728,7 @@ public class HomeController {
 }
 ----
 
-And the home.html file would need to be changed to:
+And we change the *_home.html_* file to:
 
 [source, html, linenums]
 ----
@@ -765,7 +779,24 @@ And the home.html file would need to be changed to:
 </html>
 ----
 
-The first thing you'll notice when reloading the app is that it's not showing your todo's anymore. That's because of the *_th:each_* in the TBODY > TR tag. This tag is a loop tag that will go through our list of todo's, but when we load the page the todos list is empty. We need to type a todo and click the submit button. Now it shows! Type another one, and is showing alright, but the last one is gone. That's because we are creating a new list each time we submit a todo. Let's fix that by adding our todo's to the _Session_ (is a special storage place our server assigns to each client).
+The first thing you'll notice when reloading the app is that it's not showing your todo's anymore. That's because of the *_th:each_* in the TBODY > TR tag. This tag is a loop tag that will go through our list of todo's, but when we load the page the todos list is empty. We need to type a todo and click the submit button. Now it shows! Type another one, and is showing alright, but the last one is gone. That's because we are creating a new list each time we submit a todo. Let's fix that by adding our todo's to the _Session_ (is a special storage place our server assigns to each client), but first the test (HomeControllerTests.java):
+
+[source, java, linenums]
+----
+@Test
+public void shouldAddToPreviousTodos() throws Exception {
+    List<String> todos = new ArrayList<>();
+    todos.add("test");
+
+    mvc.perform(post("/?name=demo").sessionAttr("todos", todos))
+            .andExpect(status().isOk())
+            .andExpect(content().string(containsString("<td>test</td>")))
+            .andExpect(content().string(containsString("<td>demo</td>")))
+            .andDo(print());
+}
+----
+
+On lines 3 and 4 we're adding the list of todos that have been added to the *_Session_* (just _test_ for the test), and on line 6 we're adding that list as a session object, and then expect to have them both (on lines 8 and 9) as part of the resulting HTML. And now for the implementation on HomeController.java:
 
 [source, java, linenums]
 ----
@@ -805,3 +836,9 @@ public class HomeController {
     }
 }
 ----
+
+You'll notice on line 18 that we're adding HttpSession as a method parameter and Spring's _magic_ takes care of assigning the actual Session object when that method is called. On line 19 we try to get the todos list from the session, and if doesn't exist (line 20) we create it and add it to the session (lines 21 and 22). Model is short lived map of values that are available for the template page while is being built, as soon as the page is built they're removed. On line 24 we're adding the list of todos to this map of values called: _model_ and then on line 25 we tell the template engine which page we want to be built and returned to the client.
+
+The actual adding takes place on the next method which gets the list of todos from the session and we add the name that was sent to the server and tells the template engine we want the same page to be built and returned.
+
+Can you try and implement the remove todo feature? You'll have to add a test, the controller implementation and modify the HTML to make it happen. Good luck!

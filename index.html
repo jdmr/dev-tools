@@ -1509,7 +1509,30 @@ Bootstrap is the most popular HTML, CSS, and JS framework for developing respons
 </div>
 </div>
 <div class="paragraph">
-<p>Now, let&#8217;s add a method to our HomeController to actually add the todo.</p>
+<p>To make this a functional page we&#8217;ll need to add the code that handles the todo creation. First, we&#8217;ll start by adding the following code before the closing bracket at the end of our HomeControllerTests.java file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><table class="pyhltable"><tr><td class="linenos"><div class="linenodiv">1
+2
+3
+4
+5
+6
+7
+8</div></td><td class="code"><span class="tok-nd">@Test</span>
+<span class="tok-kd">public</span> <span class="tok-kt">void</span> <span class="tok-nf">shouldAddTodo</span><span class="tok-o">()</span> <span class="tok-kd">throws</span> <span class="tok-n">Exception</span> <span class="tok-o">{</span>
+    <span class="tok-n">mvc</span><span class="tok-o">.</span><span class="tok-na">perform</span><span class="tok-o">(</span><span class="tok-n">post</span><span class="tok-o">(</span><span class="tok-s">&quot;/?name=test&quot;</span><span class="tok-o">))</span>
+            <span class="tok-o">.</span><span class="tok-na">andExpect</span><span class="tok-o">(</span><span class="tok-n">status</span><span class="tok-o">().</span><span class="tok-na">isOk</span><span class="tok-o">())</span>
+            <span class="tok-o">.</span><span class="tok-na">andExpect</span><span class="tok-o">(</span><span class="tok-n">content</span><span class="tok-o">().</span><span class="tok-na">string</span><span class="tok-o">(</span><span class="tok-n">containsString</span><span class="tok-o">(</span><span class="tok-s">&quot;&lt;td&gt;test&lt;/td&gt;&quot;</span><span class="tok-o">)))</span>
+            <span class="tok-o">.</span><span class="tok-na">andDo</span><span class="tok-o">(</span><span class="tok-n">print</span><span class="tok-o">());</span>
+
+<span class="tok-o">}</span>
+</td></tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you run the test right now with <em>mvn test</em> it should fail because it&#8217;s not implemented yet. The implementation goes in the HomeController.java file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1572,7 +1595,7 @@ Bootstrap is the most popular HTML, CSS, and JS framework for developing respons
 </div>
 </div>
 <div class="paragraph">
-<p>And the home.html file would need to be changed to:</p>
+<p>And we change the <strong><em>home.html</em></strong> file to:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1669,7 +1692,36 @@ Bootstrap is the most popular HTML, CSS, and JS framework for developing respons
 </div>
 </div>
 <div class="paragraph">
-<p>The first thing you&#8217;ll notice when reloading the app is that it&#8217;s not showing your todo&#8217;s anymore. That&#8217;s because of the <strong><em>th:each</em></strong> in the TBODY &gt; TR tag. This tag is a loop tag that will go through our list of todo&#8217;s, but when we load the page the todos list is empty. We need to type a todo and click the submit button. Now it shows! Type another one, and is showing alright, but the last one is gone. That&#8217;s because we are creating a new list each time we submit a todo. Let&#8217;s fix that by adding our todo&#8217;s to the <em>Session</em> (is a special storage place our server assigns to each client).</p>
+<p>The first thing you&#8217;ll notice when reloading the app is that it&#8217;s not showing your todo&#8217;s anymore. That&#8217;s because of the <strong><em>th:each</em></strong> in the TBODY &gt; TR tag. This tag is a loop tag that will go through our list of todo&#8217;s, but when we load the page the todos list is empty. We need to type a todo and click the submit button. Now it shows! Type another one, and is showing alright, but the last one is gone. That&#8217;s because we are creating a new list each time we submit a todo. Let&#8217;s fix that by adding our todo&#8217;s to the <em>Session</em> (is a special storage place our server assigns to each client), but first the test (HomeControllerTests.java):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><table class="pyhltable"><tr><td class="linenos"><div class="linenodiv"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</div></td><td class="code"><span class="tok-nd">@Test</span>
+<span class="tok-kd">public</span> <span class="tok-kt">void</span> <span class="tok-nf">shouldAddToPreviousTodos</span><span class="tok-o">()</span> <span class="tok-kd">throws</span> <span class="tok-n">Exception</span> <span class="tok-o">{</span>
+    <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;</span> <span class="tok-n">todos</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">ArrayList</span><span class="tok-o">&lt;&gt;();</span>
+    <span class="tok-n">todos</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-s">&quot;test&quot;</span><span class="tok-o">);</span>
+
+    <span class="tok-n">mvc</span><span class="tok-o">.</span><span class="tok-na">perform</span><span class="tok-o">(</span><span class="tok-n">post</span><span class="tok-o">(</span><span class="tok-s">&quot;/?name=demo&quot;</span><span class="tok-o">).</span><span class="tok-na">sessionAttr</span><span class="tok-o">(</span><span class="tok-s">&quot;todos&quot;</span><span class="tok-o">,</span> <span class="tok-n">todos</span><span class="tok-o">))</span>
+            <span class="tok-o">.</span><span class="tok-na">andExpect</span><span class="tok-o">(</span><span class="tok-n">status</span><span class="tok-o">().</span><span class="tok-na">isOk</span><span class="tok-o">())</span>
+            <span class="tok-o">.</span><span class="tok-na">andExpect</span><span class="tok-o">(</span><span class="tok-n">content</span><span class="tok-o">().</span><span class="tok-na">string</span><span class="tok-o">(</span><span class="tok-n">containsString</span><span class="tok-o">(</span><span class="tok-s">&quot;&lt;td&gt;test&lt;/td&gt;&quot;</span><span class="tok-o">)))</span>
+            <span class="tok-o">.</span><span class="tok-na">andExpect</span><span class="tok-o">(</span><span class="tok-n">content</span><span class="tok-o">().</span><span class="tok-na">string</span><span class="tok-o">(</span><span class="tok-n">containsString</span><span class="tok-o">(</span><span class="tok-s">&quot;&lt;td&gt;demo&lt;/td&gt;&quot;</span><span class="tok-o">)))</span>
+            <span class="tok-o">.</span><span class="tok-na">andDo</span><span class="tok-o">(</span><span class="tok-n">print</span><span class="tok-o">());</span>
+<span class="tok-o">}</span>
+</td></tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On lines 3 and 4 we&#8217;re adding the list of todos that have been added to the <strong><em>Session</em></strong> (just <em>test</em> for the test), and on line 6 we&#8217;re adding that list as a session object, and then expect to have them both (on lines 8 and 9) as part of the resulting HTML. And now for the implementation on HomeController.java:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1745,6 +1797,15 @@ Bootstrap is the most popular HTML, CSS, and JS framework for developing respons
 </td></tr></table></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>You&#8217;ll notice on line 18 that we&#8217;re adding HttpSession as a method parameter and Spring&#8217;s <em>magic</em> takes care of assigning the actual Session object when that method is called. On line 19 we try to get the todos list from the session, and if doesn&#8217;t exist (line 20) we create it and add it to the session (lines 21 and 22). Model is short lived map of values that are available for the template page while is being built, as soon as the page is built they&#8217;re removed. On line 24 we&#8217;re adding the list of todos to this map of values called: <em>model</em> and then on line 25 we tell the template engine which page we want to be built and returned to the client.</p>
+</div>
+<div class="paragraph">
+<p>The actual adding takes place on the next method which gets the list of todos from the session and we add the name that was sent to the server and tells the template engine we want the same page to be built and returned.</p>
+</div>
+<div class="paragraph">
+<p>Can you try and implement the remove todo feature? You&#8217;ll have to add a test, the controller implementation and modify the HTML to make it happen. Good luck!</p>
+</div>
 </div>
 </div>
 </div>
@@ -1752,7 +1813,7 @@ Bootstrap is the most popular HTML, CSS, and JS framework for developing respons
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2016-10-19 09:50:50 CDT
+Last updated 2016-10-19 14:35:37 CDT
 </div>
 </div>
 </body>
