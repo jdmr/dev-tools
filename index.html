@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.5">
+<meta name="author" content="David Mendoza">
+<title>Web Developer Tools</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<style>
+.listingblock .pygments .hll { background-color: #ffffcc }
+.listingblock .pygments, .listingblock .pygments code { background: #f8f8f8; }
+.listingblock .pygments .tok-c { color: #408080; font-style: italic } /* Comment */
+.listingblock .pygments .tok-err { border: 1px solid #FF0000 } /* Error */
+.listingblock .pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
+.listingblock .pygments .tok-o { color: #666666 } /* Operator */
+.listingblock .pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.listingblock .pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
+.listingblock .pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
+.listingblock .pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
+.listingblock .pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
+.listingblock .pygments .tok-ge { font-style: italic } /* Generic.Emph */
+.listingblock .pygments .tok-gr { color: #FF0000 } /* Generic.Error */
+.listingblock .pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.listingblock .pygments .tok-gi { color: #00A000 } /* Generic.Inserted */
+.listingblock .pygments .tok-go { color: #888888 } /* Generic.Output */
+.listingblock .pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.listingblock .pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+.listingblock .pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.listingblock .pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
+.listingblock .pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.listingblock .pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.listingblock .pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.listingblock .pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
+.listingblock .pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.listingblock .pygments .tok-kt { color: #B00040 } /* Keyword.Type */
+.listingblock .pygments .tok-m { color: #666666 } /* Literal.Number */
+.listingblock .pygments .tok-s { color: #BA2121 } /* Literal.String */
+.listingblock .pygments .tok-na { color: #7D9029 } /* Name.Attribute */
+.listingblock .pygments .tok-nb { color: #008000 } /* Name.Builtin */
+.listingblock .pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.listingblock .pygments .tok-no { color: #880000 } /* Name.Constant */
+.listingblock .pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
+.listingblock .pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
+.listingblock .pygments .tok-ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.listingblock .pygments .tok-nf { color: #0000FF } /* Name.Function */
+.listingblock .pygments .tok-nl { color: #A0A000 } /* Name.Label */
+.listingblock .pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.listingblock .pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
+.listingblock .pygments .tok-nv { color: #19177C } /* Name.Variable */
+.listingblock .pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.listingblock .pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+.listingblock .pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
+.listingblock .pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
+.listingblock .pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
+.listingblock .pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
+.listingblock .pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+.listingblock .pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
+.listingblock .pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+.listingblock .pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.listingblock .pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
+.listingblock .pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.listingblock .pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
+.listingblock .pygments .tok-si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.listingblock .pygments .tok-sx { color: #008000 } /* Literal.String.Other */
+.listingblock .pygments .tok-sr { color: #BB6688 } /* Literal.String.Regex */
+.listingblock .pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
+.listingblock .pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
+.listingblock .pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+.listingblock .pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
+.listingblock .pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
+.listingblock .pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+.listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Web Developer Tools</h1>
+<div class="details">
+<span id="author" class="author">David Mendoza</span><br>
+<span id="email" class="email"><a href="mailto:jdmendoza@swau.edu">jdmendoza@swau.edu</a></span><br>
+<span id="revnumber">version 1.0,</span>
+<span id="revdate">2016-10-19</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_objectives">Objectives</a></li>
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_developer_machine_setup">Developer Machine Setup</a>
+<ul class="sectlevel2">
+<li><a href="#_linux">Linux</a></li>
+<li><a href="#_java">Java</a></li>
+<li><a href="#_maven">Maven</a></li>
+</ul>
+</li>
+<li><a href="#_let_s_start_coding">Let&#8217;s Start Coding!</a>
+<ul class="sectlevel2">
+<li><a href="#_spring_boot">Spring Boot</a></li>
+<li><a href="#_atom">Atom</a></li>
+<li><a href="#_todo_app">TODO App</a></li>
+<li><a href="#_travis_ci">Travis CI</a></li>
+<li><a href="#_git">Git</a></li>
+<li><a href="#_github">GitHub</a></li>
+<li><a href="#_thymeleaf">Thymeleaf</a></li>
+<li><a href="#_netbeans">NetBeans</a></li>
+<li><a href="#_code">Code</a></li>
+<li><a href="#_todo_v1">TODO v1</a></li>
+<li><a href="#_bootstrap">Bootstrap</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_objectives">Objectives</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This workshop&#8217;s objectives are to help you acquire tools that will allow you to be better prepared for when the time comes to look for a web developer or a web administrator position (so it&#8217;s not <em>how to code in java</em>, or <em>how to do C++ right</em>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To do web development we need to understand what it involves. It&#8217;s simple really but let&#8217;s just state it to have a common ground. We&#8217;ll have our user client which is going to open up a browser and type in the URL box the address of our service. A server is going to be listening and will produce the HTML the client&#8217;s browser needs to show what we want the client to see. To produce this content the server will probably need to access a repository, which most of the times is a database. The client then will start interacting with the application in the browser, the browser will send the information to the server to be processed and the server will store it in the database if it needs to.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_developer_machine_setup">Developer Machine Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_linux">Linux</h3>
+<div class="sect3">
+<h4 id="_why_are_we_using_linux">Why are we using Linux?</h4>
+<div class="paragraph">
+<p>Most of the deployments are done on UNIX based systems, so I found it more of a <em>necessity</em> than <em>a good to have</em> in my line of work. A lot of workspaces have limited IT budgets, and Linux gets you a lot of stuff for free. So that&#8217;s why I want them to pick up this tool as we go.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_which_distribution_should_i_use">Which distribution should I use?</h4>
+<div class="paragraph">
+<p>There are a lot of Linux distributions out there, but most are based on only a few, one of the most solid ones is Debian, Fedora would be another one, and anyone will do as long as it allows to install packages and you make sure that the community behind it is big and knowledgeable. I prefer the distributions based on Debian, so the instructions will be for Debian based distributions.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_basic_linux_setup">Basic Linux Setup</h4>
+<div class="paragraph">
+<p>The Linux Operating System is an evolving environment. What this means is that the system is always being worked on and updated, some distributions provide expected timeframes for their releases, but the reality is that there are so many developers working on the different parts that conform the Linux Operating System that in between these timeframes there&#8217;s a lot of little releases going on for different parts of the Operating System.</p>
+</div>
+<div class="paragraph">
+<p>To make it work, each base distribution has created a repository with the packages that the system needs and the ones that can be added to it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_terminal">Terminal</h4>
+<div class="paragraph">
+<p>Knowing your way around on a UNIX/Linux system is essential. And though we have a GUI environment, we&#8217;ll have to get used to working on a terminal to gain the experience we will need when we actually do the deployment on a server (which most of the time doesn&#8217;t have a GUI).</p>
+</div>
+<div class="paragraph">
+<p>The basic commands you&#8217;ll need to use the terminal are:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ls</dt>
+<dd>
+<p>Shows the files in the folder.</p>
+</dd>
+<dt class="hdlist1">cp</dt>
+<dd>
+<p>Copies files from source to destination</p>
+</dd>
+<dt class="hdlist1">mv</dt>
+<dd>
+<p>Moves files from source to destination.</p>
+</dd>
+<dt class="hdlist1">ln</dt>
+<dd>
+<p>Creates hard or soft links.</p>
+</dd>
+<dt class="hdlist1">tar</dt>
+<dd>
+<p>Combines files into a single file, it also extracts the files from that single file.</p>
+</dd>
+<dt class="hdlist1">zip &amp; unzip</dt>
+<dd>
+<p>Do the same thing as <strong><em>tar</em></strong> but with a different file format. Some distributions don&#8217;t provide this tool by default so you might need to install it.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>For a Debian-based distribution you need to run in a terminal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-get update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll notice the first word of this instruction is <strong><em>sudo</em></strong>. Most Linux systems have a super user called <strong><em>root</em></strong>. This user can do everything on the system, even destroy it. To prevent users from doing <em>stuff</em> to the system without warning, the <strong><em>sudo</em></strong> instruction was created. It allows the user granted this privilege to run instructions as root. The next instruction is <strong><em>apt-get</em></strong> which is how Debian based systems interact with the remote repositories list and the local one. And finally, <strong><em>update</em></strong> is to sync the remote package repositories list with the local one.</p>
+</div>
+<div class="paragraph">
+<p>Once the system has finished updating the lists, you need to run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-get upgrade</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need to keep doing these two instructions on a regular basis on our Linux boxes to keep them up to date and secure.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vi_editor">Vi Editor</h4>
+<div class="paragraph">
+<p>Vi is a powerful editor and it comes with almost every Linux distribution. I&#8217;ll show you the basics of this tool. To move around use <strong><em>j</em></strong> or <strong><em>k</em></strong>. To go to the end of the file is <strong><em>G</em></strong> and to go to the beginning of the file use <strong><em>gg</em></strong>. You&#8217;ll notice that you can&#8217;t modify the file even though you&#8217;re in the right spot, that&#8217;s because you&#8217;re in command mode, to insert changes where you&#8217;re at use <strong><em>i</em></strong>, to append use <strong><em>a</em></strong>, to add a new line use <strong><em>o</em></strong> and to go back to command mode press the <strong><em>esc</em></strong> key. Special commands start with a colon (<strong><em>:</em></strong>). For instance <strong><em>:q</em></strong> is quit, <strong><em>:w</em></strong> is save, and you can use them together to save and quit <strong><em>:wq</em></strong>. If you made changes and you try to quit without saving, it won&#8217;t let you quit until you save or force quit with <strong><em>:q!</em></strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java">Java</h3>
+<div class="paragraph">
+<p>We&#8217;ll proceed to set up Java on our machine by adding the java package repository URL to our <strong><em>sources.list</em></strong> file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo vi /etc/apt/sources.list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Go to the end of the file (<strong><em>G</em></strong>) and add a new line (<strong><em>o</em></strong>) and paste the following line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh">deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We save and exit the file by getting out of <strong><em>INSERT</em></strong> mode by pressing the <strong><em>esc</em></strong> key, and then the instruction <strong><em>:wq</em></strong> (or the shorthand <strong><em>:x</em></strong>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 <b class="conum">(1)</b>
+<span class="tok-nv">$ </span>sudo apt-get update <b class="conum">(2)</b>
+<span class="tok-nv">$ </span>sudo apt-get install oracle-java8-installer <b class="conum">(3)</b>
+<span class="tok-nv">$ </span>sudo ln -s /usr/lib/jvm/java-8-oracle /usr/local/java <b class="conum">(4)</b>
+<span class="tok-nv">$ </span>sudo vi /etc/profile <b class="conum">(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>The new repository we added to the sources.list file is not trusted until we add the key with which every package on that repository is packaged. So by adding the key into our system we now trust this new repository.</p>
+</li>
+<li>
+<p>We ask Linux to go get the list of packages available on the new repository (as well as any other repositories on the sources.list file).</p>
+</li>
+<li>
+<p>We install Java 8 on our system.</p>
+</li>
+<li>
+<p>With the previous step Java is available on our system. The problem is that some of the tools we&#8217;re using require an environment variable called JAVA_HOME. We could point directly to the directory where Java is at, and it would work, but when a new version of Java comes out, we would have to do this again and reload the environment by doing a logout and a login again. So to make that easier we&#8217;ll add a soft link, and then when a new version of java is installed we just change the soft link and everything works without having to reload the environment.</p>
+</li>
+<li>
+<p>We need to modify the <strong><em>/etc/profile</em></strong> file to add the JAVA_HOME environment variable.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>At the end of the file (<strong><em>G</em></strong>) we need to add (<strong><em>o</em></strong>) this lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">export </span><span class="tok-nv">JAVA_HOME</span><span class="tok-o">=</span>/usr/local/java
+<span class="tok-nb">export </span><span class="tok-nv">PATH</span><span class="tok-o">=</span><span class="tok-nv">$JAVA_HOME</span>/bin:<span class="tok-nv">$PATH</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this, we have configured Java on our system.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maven">Maven</h3>
+<div class="paragraph">
+<p>Now we need to install Maven, our build tool. When we start building our tool you&#8217;ll notice that we create java classes, HTML files, CSS files, some of these files need to be compiled, some need to be in a certain place in order to be found by the app. Maven helps us with all these chores.</p>
+</div>
+<div class="paragraph">
+<p>The place to look for Maven is <a href="http://maven.apache.org" class="bare">http://maven.apache.org</a>, you can download it from there with your browser and skip the first instruction, or you can use <strong><em>wget</em></strong> (another Linux tool that enables us to download a file without a browser) and continue with the rest of the instructions to install it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>wget http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+<span class="tok-nv">$ </span>tar -xvzf apache-maven-3.3.9-bin.tar.gz
+<span class="tok-nv">$ </span>sudo mkdir /opt/tools
+<span class="tok-nv">$ </span>sudo mv apache-maven-3.3.9 /opt/tools
+<span class="tok-nv">$ </span>sudo ln -s /opt/tools/apache-maven-3.3.9 /usr/local/maven
+<span class="tok-nv">$ </span>sudo vi /etc/profile</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Keep in mind that new releases come out all the time. Do the same steps for the newer versions of the tool.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We need to open the /etc/profile file again to add Maven to the environment.</p>
+</div>
+<div class="paragraph">
+<p>We need to add a few lines to the end of the /etc/profile file we have open, and to do that we need to go to the end of the file and modify it to look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">export </span><span class="tok-nv">JAVA_HOME</span><span class="tok-o">=</span>/usr/local/java <b class="conum">(1)</b>
+<span class="tok-nb">export </span><span class="tok-nv">MAVEN_HOME</span><span class="tok-o">=</span>/usr/local/maven <b class="conum">(2)</b>
+<span class="tok-nb">export </span><span class="tok-nv">PATH</span><span class="tok-o">=</span><span class="tok-nv">$JAVA_HOME</span>/bin:<span class="tok-nv">$MAVEN_HOME</span>/bin:<span class="tok-nv">$PATH</span> <b class="conum">(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Remains the same.</p>
+</li>
+<li>
+<p>New line adding the MAVEN_HOME environment variable.</p>
+</li>
+<li>
+<p>We insert the $MAVEN_HOME/bin directory to the PATH.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With those changes in place, we save and quit the file. To get the environment variables to load on our terminal the easiest way is to sign out and sign back again, open a terminal and check that everything is in place with the following instructions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>java -version
+<span class="tok-nv">$ </span>mvn -v</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both of them should run and show you version numbers. Finally, our machine is ready for some coding!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_let_s_start_coding">Let&#8217;s Start Coding!</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_spring_boot">Spring Boot</h3>
+<div class="paragraph">
+<p>Spring Boot is a tool part of the Spring Framework that enables developers to start quickly, they take care of setting up the application with opinionated defaults. This makes it easy to take advantage of what the Spring Framework has to offer. Without having to know too much you are able to build a solid application in minutes.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s do that! Go to <a href="http://start.spring.io" class="bare">http://start.spring.io</a> and on the dependencies side type Web, hit enter to add it, and then type Devtools and hit enter again and then click on the Generate Project button, this will create a demo.zip file for you. Unzip it and move it to your projects folder</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">cd </span>Downloads
+<span class="tok-nv">$ </span>unzip demo.zip
+<span class="tok-nv">$ </span>mkdir ~/projects
+<span class="tok-nv">$ </span>mv demo ~/projects
+<span class="tok-nv">$ </span><span class="tok-nb">cd</span> ~/projects/demo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We now run our demo app with the following instruction:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn spring-boot:run</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We wait for it to show the following line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>... com.example.DemoApplication              : Started DemoApplication in 2.476 seconds (JVM running for 8.941)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We open a browser and go to <a href="http://localhost:8080" class="bare">http://localhost:8080</a> and we&#8217;ll get a <strong><em>Whitelabel Error Page</em></strong> with a <strong><em>404</em></strong> near the bottom. What this means is that the app couldn&#8217;t find a page to provide a response to the client request. We&#8217;ll fix that by creating it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>vi src/main/resources/static/index.html</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will open the editor on a new document, remember that when you open Vi you&#8217;re in command mode to actually edit the file you would have to go into <strong><em>INSERT</em></strong> mode by pressing the <strong><em>i</em></strong> key (command).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+<span class="tok-nt">&lt;html&gt;</span>
+  <span class="tok-nt">&lt;head&gt;</span>
+    <span class="tok-nt">&lt;meta</span> <span class="tok-na">charset=</span><span class="tok-s">&quot;utf-8&quot;</span><span class="tok-nt">&gt;</span>
+    <span class="tok-nt">&lt;title&gt;</span>Hello World!<span class="tok-nt">&lt;/title&gt;</span>
+  <span class="tok-nt">&lt;/head&gt;</span>
+  <span class="tok-nt">&lt;body&gt;</span>
+    <span class="tok-nt">&lt;h1&gt;</span>Hello World!<span class="tok-nt">&lt;/h1&gt;</span>
+  <span class="tok-nt">&lt;/body&gt;</span>
+<span class="tok-nt">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now visit <a href="http://localhost:8080" class="bare">http://localhost:8080</a> again and we should be getting the same <strong><em>Whitelabel Error Page</em></strong>. This means we need to redeploy the app. Go to the terminal where spring boot is running and use the combination of <strong><em>ctrl+shift+t</em></strong> keys to open a new tab. That tab should be in the project folder, just run to redeploy:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn package -DskipTests<span class="tok-o">=</span><span class="tok-nb">true</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By the time this instruction ends, the redeploy should already be done, so just go visit <a href="http://localhost:8080" class="bare">http://localhost:8080</a> and you should get the hello world page.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_atom">Atom</h3>
+<div class="paragraph">
+<p>Typing all that in in vi is really tiring, there has to be a better way right? Of course, there is, I&#8217;m just trying to show you the ropes with vi that&#8217;s all, we should probably switch to <strong><em>vim</em></strong> and use plugins but I&#8217;ll let you try that one on your own. We&#8217;re going to try Atom.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+Atom is a text editor that&#8217;s modern, approachable, yet hackable to the core—a tool you can customize to do anything but also use productively without ever touching a config file.
+</blockquote>
+<div class="attribution">
+&#8212; atom.io
+</div>
+</div>
+<div class="paragraph">
+<p>Just go to <a href="http://atom.io" class="bare">http://atom.io</a> in your browser download the .deb file and install it on your system with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ sudo apt-get install git <b class="conum">(1)</b>
+$ sudo dpkg -i atom-amd64.deb <b class="conum">(2)</b>
+$ sudo apt-get install -f <b class="conum">(3)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>In order to manually install atom we need to install its dependencies. Git being the one we don&#8217;t have installed yet. Git is a version control tool we&#8217;ll be using down the road, so it doesn&#8217;t hurt to install it here.</p>
+</li>
+<li>
+<p>Extract package to the proper directory.</p>
+</li>
+<li>
+<p>Install package.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>We open atom from the terminal by:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">cd</span> ~/projects/demo
+<span class="tok-nv">$ </span>atom .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On the left, we&#8217;ll see a file manager with the text editor on the right. We&#8217;ll navigate to src/main/resources/static and right-click to create a new file called <strong><em>hello.html</em></strong>. Then we type <strong><em>html</em></strong> and then press the <strong><em>tab</em></strong> key, whoa! What just happened, well Atom comes with a few plugins preinstalled one of them being Emmet. This plugin has HTML shortcuts to help speed up HTML development. You can see what Emmet is capable of at <a href="http://emmet.io/" class="bare">http://emmet.io/</a>.</p>
+</div>
+<div class="paragraph">
+<p>Save your changes and see your changes at <a href="http://localhost:8080/hello.html" class="bare">http://localhost:8080/hello.html</a>, if you get the 404 page again, you&#8217;ll need to redeploy the app.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_todo_app">TODO App</h3>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="http://start.spring.io"><img src="assets/images/start-spring-io.jpg" alt="http://start.spring.io"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s start the app we&#8217;ll be using throughout the workshop by going back to <a href="http://start.spring.io" class="bare">http://start.spring.io</a> and renaming the artifact name to <strong><em>todo</em></strong> and adding <strong><em>Thymeleaf</em></strong> () and <strong><em>DevTools</em></strong> to the dependency list. Click on Generate Project to download zip file, extract it in our projects folder with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span><span class="tok-nb">cd</span> ~/projects/
+<span class="tok-nv">$ </span>unzip ~/Downloads/todo.zip
+<span class="tok-nv">$ </span><span class="tok-nb">cd </span>todo
+<span class="tok-nv">$ </span>atom .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Open the <em>pom.xml</em> file and add the following between the description end tag and the parent beginning tag:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="xml"><span class="tok-nt">&lt;licenses&gt;</span>
+    <span class="tok-nt">&lt;license&gt;</span>
+        <span class="tok-nt">&lt;name&gt;</span>MIT License<span class="tok-nt">&lt;/name&gt;</span>
+        <span class="tok-nt">&lt;url&gt;</span>http://www.opensource.org/licenses/mit-license.php<span class="tok-nt">&lt;/url&gt;</span>
+    <span class="tok-nt">&lt;/license&gt;</span>
+<span class="tok-nt">&lt;/licenses&gt;</span>
+
+<span class="tok-nt">&lt;organization&gt;</span>
+    <span class="tok-nt">&lt;name&gt;</span>David Mendoza<span class="tok-nt">&lt;/name&gt;</span>
+    <span class="tok-nt">&lt;url&gt;</span>http://davidmendoza.org<span class="tok-nt">&lt;/url&gt;</span>
+<span class="tok-nt">&lt;/organization&gt;</span>
+
+<span class="tok-nt">&lt;developers&gt;</span>
+    <span class="tok-nt">&lt;developer&gt;</span>
+        <span class="tok-nt">&lt;id&gt;</span>jdmr<span class="tok-nt">&lt;/id&gt;</span>
+        <span class="tok-nt">&lt;name&gt;</span>J. David Mendoza<span class="tok-nt">&lt;/name&gt;</span>
+        <span class="tok-nt">&lt;email&gt;</span>jdmendoza@swau.edu<span class="tok-nt">&lt;/email&gt;</span>
+    <span class="tok-nt">&lt;/developer&gt;</span>
+<span class="tok-nt">&lt;/developers&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Change everything to have your information on it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_travis_ci">Travis CI</h3>
+<div class="quoteblock">
+<blockquote>
+Travis CI is a hosted, distributed continuous integration service used to build and test software projects hosted on GitHub.
+</blockquote>
+<div class="attribution">
+&#8212; wikipedia.org
+</div>
+</div>
+<div class="sect3">
+<h4 id="_why_do_we_need_a_tool_like_travis">Why do we need a tool like Travis?</h4>
+<div class="paragraph">
+<p>When you&#8217;re building an application is always important to make sure that whatever you&#8217;ve built is working properly and you also want to make sure that you haven&#8217;t broken anything else in the process. That&#8217;s why you need a testing infrastructure. Maven already provides a way of testing your code if you have tests to run. And Spring Boot comes with JUnit support to build those tests, as a matter of fact, the project that came in the zip file already has a test in there and you can run it by going to the terminal and running the following instruction on the project&#8217;s folder:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn <span class="tok-nb">test</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By building our application alongside tests that validate that our application is doing what it&#8217;s supposed to do, our application will be a lot more solid when deployed. And when you code and have to introduce a big change to the codebase you can make it without wondering if something broke.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git">Git</h3>
+<div class="quoteblock">
+<blockquote>
+Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+</blockquote>
+<div class="attribution">
+&#8212; git-scm.com
+</div>
+</div>
+<div class="paragraph">
+<p>This confidence that we&#8217;re talking about grows even more if we use a <em>Version Control System</em> to manage our codebase. How so? Well, when you add changes and start adding new dependencies and make that big change that in your mind would work, but when you&#8217;re actually building it you realize that it doesn&#8217;t work, now what? You have all these new dependencies on your codebase, you&#8217;ve changed a bunch of classes, HTML, etc. to try and make it work, and now it&#8217;s all a mess if only there was a way of going to the way it was before I started adding this new feature. That&#8217;s what a <em>Version Control System</em> enables you to do. To go to any <em>version</em> of the codebase with ease. The <em>Version Control Tool</em> we&#8217;re going to be using is <strong><em>Git</em></strong>. This <em>version control manager</em> allows us to have a full blown <em>version control system</em> in our computer, and if you want to use it to code from different computers and/or with different people, well, they all can have a copy of your repository and git has ways of synchronizing changes between the different repository copies.</p>
+</div>
+<div class="paragraph">
+<p>Travis CI works in conjunction with Git to check out your changes once you&#8217;ve made a commit. Travis CI doesn&#8217;t actually connect to your computer to get the changes, it uses a service that&#8217;s called <strong><em>Github</em></strong>. This service can hold a copy of your local repository and share it with other people or tools (<em>like Travis CI</em>). We&#8217;ll get to that in a bit, but first, let&#8217;s configure Travis CI.</p>
+</div>
+<div class="paragraph">
+<p>In the root directory of our application, we need to create a file called: <em>.travis.yml</em> (notice the period in front of the file name)</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/images/travis-yml.jpg" alt="travis yml">
+</div>
+</div>
+<div class="paragraph">
+<p>The content of the file as you can see in the image is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="yaml"><span class="tok-l-Scalar-Plain">language</span><span class="tok-p-Indicator">:</span> <span class="tok-l-Scalar-Plain">java</span>
+<span class="tok-l-Scalar-Plain">sudo</span><span class="tok-p-Indicator">:</span> <span class="tok-l-Scalar-Plain">false</span>
+
+<span class="tok-l-Scalar-Plain">jdk</span><span class="tok-p-Indicator">:</span>
+  <span class="tok-p-Indicator">-</span> <span class="tok-l-Scalar-Plain">oraclejdk8</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>First, we&#8217;re telling Travis CI that the base code of our app is in Java, then that we won&#8217;t need sudo privileges to execute our tests and finally what version of Java do we need to compile and run our tests.</p>
+</div>
+<div class="paragraph">
+<p>We already installed Git to use Atom, but in case you didn&#8217;t you would need to run this from the terminal shell:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>sudo apt-get install git</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_github">GitHub</h3>
+<div class="quoteblock">
+<blockquote>
+GitHub is home to all kinds of software projects, from simple programs to today’s most popular apps.
+</blockquote>
+<div class="attribution">
+&#8212; github.com
+</div>
+</div>
+<div class="paragraph">
+<p>To use it we&#8217;ll need to create an account, so go to <a href="http://github.com" class="bare">http://github.com</a> and sign up for one and verify your email. Once you&#8217;ve finished that create a new repository named todo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/images/github.jpg" alt="github">
+</div>
+</div>
+<div class="paragraph">
+<p>After you&#8217;ve created the repository leave the instructions to create the local repository and open a new browser window to go to <a href="http://travis-ci.org" class="bare">http://travis-ci.org</a> and click on the <em>Sign in with GitHub</em> button and then authorize Travis CI to interact with your GitHub Account, then click on your profile to enable your <em>todo</em> repository for continuous integration.</p>
+</div>
+<div class="paragraph">
+<p>Now we go back to our local repository creation instructions page and copy the first two lines and paste them in the terminal after we are certain that we are in the project&#8217;s directory (<em>~/projects/todo</em>) and notice that I&#8217;ve changed the third line to use a period (.) instead of the README.md, this is because we have more files in the project and we want to add them:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nb">echo</span> <span class="tok-s2">&quot;# todo&quot;</span> &gt;&gt; README.md
+git init
+git add .
+git commit -m <span class="tok-s2">&quot;first commit&quot;</span>
+git remote add origin https://github.com/david-mendoza/todo.git
+git push -u origin master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Our build passed! Awesome! Now we need to let everyone know, right? To do that we go to <a href="http://travis-ci.org" class="bare">http://travis-ci.org</a> and click on the badge right next to our project and then choose Markdown from the options copy that code into the README.md file in Atom. To see more detailed instructions from Travis CI go to <a href="https://docs.travis-ci.com/user/status-images" class="bare">https://docs.travis-ci.com/user/status-images</a>. Now go to your terminal shell again and do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh">git add .
+git commit -m <span class="tok-s2">&quot;Added Travis build status badge to the README&quot;</span>
+git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now when somebody loads your GitHub repository page they&#8217;ll see that our code is being tested and currently passing those tests.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_thymeleaf">Thymeleaf</h3>
+<div class="quoteblock">
+<blockquote>
+Thymeleaf is a modern server-side Java template engine for both the web and standalone environments.
+</blockquote>
+<div class="attribution">
+&#8212; thymeleaf.org
+</div>
+</div>
+<div class="paragraph">
+<p>Our first iteration of our app is going to be a server-side rendered app. For this, we would need JSP&#8217;s (<em>Java Server Pages</em>) which have been discontinued by the community behind JEE (<em>Java Enterprise Edition</em>). JEE is a specification that defines tools to build enterprise-grade applications with Java, we could follow that route in developing this application, but that road is a little more cumbersome. Spring was born of the need to simplify Java Enterprise development and has done such a great job that the current JEE spec pulled a lot of its standards from how Spring does things. Doing JEE development now is a lot easier than before but in my opinion, some things are still missing.</p>
+</div>
+<div class="paragraph">
+<p>I don&#8217;t want you to think that we&#8217;re using Thymeleaf because JSP&#8217;s got discontinued. Thymeleaf is a great tool and it provides a bunch of stuff that you can&#8217;t get on JSP&#8217;s alone, so I do believe that Thymeleaf is a <em>modern server-side</em> rendering engine.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_netbeans">NetBeans</h3>
+<div class="paragraph">
+<p>It&#8217;s nice to have a text editor that will help with HTML and simple file edits but to do Java in a much more productive way we need an IDE, and there&#8217;s where NetBeans comes in.</p>
+</div>
+<div class="paragraph">
+<p>Download and install the JEE version of NetBeans from <a href="http://netbeans.org/downloads/" class="bare">http://netbeans.org/downloads/</a>. Open a terminal and go to the Downloads folder and do the following instructions there:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>chmod +x netbeans-8.1-javaee-linux.sh
+<span class="tok-nv">$ </span>./netbeans-8.1-javaee-linux.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first instructions make the file executable and the second actually starts the installer. Follow the instructions to install and enable the Apache Tomcat installation (we don&#8217;t need it for the workshop, but you might need it later). On the screen where it asks for the JDK please add the JDK_HOME link we already created and click next:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh">/usr/local/java</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once installed we click on File &gt; Open Project and then look for ~/projects/todo, and since NetBeans uses Maven&#8217;s POM file to manage the project, it will just open.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/images/netbeans.jpg" alt="netbeans">
+</div>
+</div>
+<div class="paragraph">
+<p>The first thing we need to do after we&#8217;ve opened a maven project is set it up by right-clicking on the project name and then click on the Properties option. Then a new window will show up.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/images/netbeans-run-actions.jpg" alt="netbeans run actions">
+</div>
+</div>
+<div class="paragraph">
+<p>Click on the Actions option on the left menu, and then on the right click on the Build project and in the Execute Goals input change the value to <em>package</em>, then the Clean and Build project option change it to <em>clean package</em> and finally the Build with Dependencies change it to just <em>package</em> again. Click on the Build project option again and click on the <em>Add</em> button under <em>Set properties</em> and choose the Skip Tests option. These changes are just to make the build process a little faster, it would work just fine without them too.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code">Code</h3>
+<div class="paragraph">
+<p>The Spring starter tool adds the classes in what in my opinion is the wrong folder. To fix it we add a new package todo to our current package schema. To do that we need to right-click on the package name and select the New package option and type <em>todo</em>. Once you&#8217;ve finished creating both packages (source and test) drag the class in Source Packages to the new package and click on the Refactor button for both. Let&#8217;s make sure we didn&#8217;t break anything by testing the changes in the terminal type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn clean <span class="tok-nb">test</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, we&#8217;re going to build a test that checks if the title of the first page we get is TODO, it&#8217;s not right now, but we&#8217;ll make it so later.</p>
+</div>
+<div class="paragraph">
+<p>On the Test Packages section we&#8217;re going to create a new package called <em>home</em> and in that package, we&#8217;ll create the <em>HomeControllerTests</em> Java Class by right clicking the new package and choosing the Java Class option. The class needs to look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><span class="tok-kn">package</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">davidmendoza</span><span class="tok-o">.</span><span class="tok-na">todo</span><span class="tok-o">.</span><span class="tok-na">home</span><span class="tok-o">;</span>
+
+<span class="tok-kn">import</span> <span class="tok-nn">static</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">hamcrest</span><span class="tok-o">.</span><span class="tok-na">Matchers</span><span class="tok-o">.</span><span class="tok-na">containsString</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.junit.Before</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.junit.Test</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.junit.runner.RunWith</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.beans.factory.annotation.Autowired</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.boot.test.context.SpringBootTest</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.test.context.junit4.SpringRunner</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.test.web.servlet.MockMvc</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">static</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">springframework</span><span class="tok-o">.</span><span class="tok-na">test</span><span class="tok-o">.</span><span class="tok-na">web</span><span class="tok-o">.</span><span class="tok-na">servlet</span><span class="tok-o">.</span><span class="tok-na">request</span><span class="tok-o">.</span><span class="tok-na">MockMvcRequestBuilders</span><span class="tok-o">.</span><span class="tok-na">get</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">static</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">springframework</span><span class="tok-o">.</span><span class="tok-na">test</span><span class="tok-o">.</span><span class="tok-na">web</span><span class="tok-o">.</span><span class="tok-na">servlet</span><span class="tok-o">.</span><span class="tok-na">result</span><span class="tok-o">.</span><span class="tok-na">MockMvcResultHandlers</span><span class="tok-o">.</span><span class="tok-na">print</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">static</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">springframework</span><span class="tok-o">.</span><span class="tok-na">test</span><span class="tok-o">.</span><span class="tok-na">web</span><span class="tok-o">.</span><span class="tok-na">servlet</span><span class="tok-o">.</span><span class="tok-na">result</span><span class="tok-o">.</span><span class="tok-na">MockMvcResultMatchers</span><span class="tok-o">.</span><span class="tok-na">content</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">static</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">springframework</span><span class="tok-o">.</span><span class="tok-na">test</span><span class="tok-o">.</span><span class="tok-na">web</span><span class="tok-o">.</span><span class="tok-na">servlet</span><span class="tok-o">.</span><span class="tok-na">result</span><span class="tok-o">.</span><span class="tok-na">MockMvcResultMatchers</span><span class="tok-o">.</span><span class="tok-na">status</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.test.web.servlet.setup.MockMvcBuilders</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.context.WebApplicationContext</span><span class="tok-o">;</span>
+
+<span class="tok-nd">@RunWith</span><span class="tok-o">(</span><span class="tok-n">SpringRunner</span><span class="tok-o">.</span><span class="tok-na">class</span><span class="tok-o">)</span>
+<span class="tok-nd">@SpringBootTest</span><span class="tok-o">(</span><span class="tok-n">webEnvironment</span> <span class="tok-o">=</span> <span class="tok-n">SpringBootTest</span><span class="tok-o">.</span><span class="tok-na">WebEnvironment</span><span class="tok-o">.</span><span class="tok-na">RANDOM_PORT</span><span class="tok-o">)</span>
+<span class="tok-kd">public</span> <span class="tok-kd">class</span> <span class="tok-nc">HomeControllerTests</span> <span class="tok-o">{</span>
+
+    <span class="tok-nd">@Autowired</span>
+    <span class="tok-kd">private</span> <span class="tok-n">WebApplicationContext</span> <span class="tok-n">wac</span><span class="tok-o">;</span>
+
+    <span class="tok-kd">private</span> <span class="tok-n">MockMvc</span> <span class="tok-n">mvc</span><span class="tok-o">;</span>
+
+    <span class="tok-nd">@Before</span>
+    <span class="tok-kd">public</span> <span class="tok-kt">void</span> <span class="tok-nf">setup</span><span class="tok-o">()</span> <span class="tok-o">{</span>
+        <span class="tok-k">this</span><span class="tok-o">.</span><span class="tok-na">mvc</span> <span class="tok-o">=</span> <span class="tok-n">MockMvcBuilders</span><span class="tok-o">.</span><span class="tok-na">webAppContextSetup</span><span class="tok-o">(</span><span class="tok-n">wac</span><span class="tok-o">).</span><span class="tok-na">build</span><span class="tok-o">();</span>
+    <span class="tok-o">}</span>
+
+    <span class="tok-nd">@Test</span>
+    <span class="tok-kd">public</span> <span class="tok-kt">void</span> <span class="tok-nf">shouldShowHomePage</span><span class="tok-o">()</span> <span class="tok-kd">throws</span> <span class="tok-n">Exception</span> <span class="tok-o">{</span>
+        <span class="tok-n">mvc</span><span class="tok-o">.</span><span class="tok-na">perform</span><span class="tok-o">(</span><span class="tok-n">get</span><span class="tok-o">(</span><span class="tok-s">&quot;/&quot;</span><span class="tok-o">))</span>
+                <span class="tok-o">.</span><span class="tok-na">andExpect</span><span class="tok-o">(</span><span class="tok-n">status</span><span class="tok-o">().</span><span class="tok-na">isOk</span><span class="tok-o">())</span>
+                <span class="tok-o">.</span><span class="tok-na">andExpect</span><span class="tok-o">(</span><span class="tok-n">content</span><span class="tok-o">().</span><span class="tok-na">string</span><span class="tok-o">(</span><span class="tok-n">containsString</span><span class="tok-o">(</span><span class="tok-s">&quot;&lt;title&gt;TODO&lt;/title&gt;&quot;</span><span class="tok-o">)))</span>
+                <span class="tok-o">.</span><span class="tok-na">andDo</span><span class="tok-o">(</span><span class="tok-n">print</span><span class="tok-o">());</span>
+    <span class="tok-o">}</span>
+
+<span class="tok-o">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+I&#8217;m removing most comments from classes for brevity, but it&#8217;s recommended to keep them.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If we run the tests again we should get 1 failing test. Which is good, don&#8217;t worry. Now let&#8217;s fix that!</p>
+</div>
+<div class="paragraph">
+<p>We create the package home on the Source Packages side and create a new java class in that package called <em>HomeController</em> that should look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><span class="tok-kn">package</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">davidmendoza</span><span class="tok-o">.</span><span class="tok-na">todo</span><span class="tok-o">.</span><span class="tok-na">home</span><span class="tok-o">;</span>
+
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.stereotype.Controller</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.GetMapping</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="tok-o">;</span>
+
+<span class="tok-nd">@Controller</span>
+<span class="tok-nd">@RequestMapping</span><span class="tok-o">(</span><span class="tok-s">&quot;/&quot;</span><span class="tok-o">)</span>
+<span class="tok-kd">public</span> <span class="tok-kd">class</span> <span class="tok-nc">HomeController</span> <span class="tok-o">{</span>
+
+    <span class="tok-nd">@GetMapping</span>
+    <span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">home</span><span class="tok-o">()</span> <span class="tok-o">{</span>
+        <span class="tok-k">return</span> <span class="tok-s">&quot;home&quot;</span><span class="tok-o">;</span>
+    <span class="tok-o">}</span>
+<span class="tok-o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we need the page that&#8217;s going to be rendered and returned to the browser. We do that with a Thymeleaf template called home.html in the src/main/resources/templates folder, you&#8217;ll find the folder under Other Sources in NetBeans:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+<span class="tok-nt">&lt;html</span> <span class="tok-na">xmlns=</span><span class="tok-s">&quot;http://www.w3.org/1999/xhtml&quot;</span>
+      <span class="tok-na">xmlns:th=</span><span class="tok-s">&quot;http://www.thymeleaf.org&quot;</span><span class="tok-nt">&gt;</span>
+    <span class="tok-nt">&lt;head&gt;</span>
+        <span class="tok-nt">&lt;title&gt;</span>TODO<span class="tok-nt">&lt;/title&gt;</span>
+    <span class="tok-nt">&lt;/head&gt;</span>
+    <span class="tok-nt">&lt;body&gt;</span>
+        <span class="tok-nt">&lt;h1&gt;</span>TODO<span class="tok-nt">&lt;/h1&gt;</span>
+    <span class="tok-nt">&lt;/body&gt;</span>
+<span class="tok-nt">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Is just a plain HTML page but with 2 namespaces on lines 2 and 3 as part of the HTML tag. These namespaces enable Thymeleaf to use special tags to perform special actions while building the page. We&#8217;re just declaring them without using them for now. Let&#8217;s run our tests again:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn clean <span class="tok-nb">test</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Awesome! Let&#8217;s commit these changes to our <em>Version Control System</em> before we break it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>git add .
+<span class="tok-nv">$ </span>git commit -m <span class="tok-s2">&quot;Created Hello Page&quot;</span>
+<span class="tok-nv">$ </span>git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Actually, we haven&#8217;t seen anything but code, how can we be confident that it actually worked! You&#8217;re right, let&#8217;s run it and open it on a browser on <a href="http://localhost:8080" class="bare">http://localhost:8080</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn spring-boot:run</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Great! It works! Although I really don&#8217;t like typing <em>mvn spring-boot:run</em> every time I want to run the application, it&#8217;s too long for a repetitive process. Let&#8217;s open the pom.xml file on NetBeans with <em>ctrl+shift+o</em> you pull up a window that will search for all the files on the open projects, just type <em>pom.xml</em> and choose it from the list. And look for the build tag at the bottom of the file and add the <em>defaultGoal</em> tag to make it look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="xml"><span class="tok-nt">&lt;build&gt;</span>
+    <span class="tok-nt">&lt;defaultGoal&gt;</span>spring-boot:run<span class="tok-nt">&lt;/defaultGoal&gt;</span> <b class="conum">(1)</b>
+    <span class="tok-nt">&lt;plugins&gt;</span>
+        <span class="tok-nt">&lt;plugin&gt;</span>
+            <span class="tok-nt">&lt;groupId&gt;</span>org.springframework.boot<span class="tok-nt">&lt;/groupId&gt;</span>
+            <span class="tok-nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="tok-nt">&lt;/artifactId&gt;</span>
+        <span class="tok-nt">&lt;/plugin&gt;</span>
+    <span class="tok-nt">&lt;/plugins&gt;</span>
+<span class="tok-nt">&lt;/build&gt;</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>This is the only line you need to add.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>And now you can stop the one that&#8217;s running on the terminal (with <em>ctrl+c</em>), and run it again by just typing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span class="tok-nv">$ </span>mvn</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_todo_v1">TODO v1</h3>
+<div class="paragraph">
+<p>There&#8217;s a lot of ways of building an app. We&#8217;ll use front/back because is the easiest to grasp when you&#8217;re starting. What this means is that we&#8217;ll build the client facing code first and leave the backend for last.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s start by adding a field where we&#8217;ll input our todo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+<span class="tok-nt">&lt;html</span> <span class="tok-na">xmlns=</span><span class="tok-s">&quot;http://www.w3.org/1999/xhtml&quot;</span>
+      <span class="tok-na">xmlns:th=</span><span class="tok-s">&quot;http://www.thymeleaf.org&quot;</span><span class="tok-nt">&gt;</span>
+    <span class="tok-nt">&lt;head&gt;</span>
+        <span class="tok-nt">&lt;title&gt;</span>TODO<span class="tok-nt">&lt;/title&gt;</span>
+    <span class="tok-nt">&lt;/head&gt;</span>
+    <span class="tok-nt">&lt;body&gt;</span>
+        <span class="tok-nt">&lt;h1&gt;</span>TODO<span class="tok-nt">&lt;/h1&gt;</span>
+        <span class="tok-nt">&lt;form</span> <span class="tok-na">action=</span><span class="tok-s">&quot;#&quot;</span><span class="tok-nt">&gt;</span>
+          <span class="tok-nt">&lt;label</span> <span class="tok-na">for=</span><span class="tok-s">&quot;name&quot;</span><span class="tok-nt">&gt;</span>TODO Name<span class="tok-nt">&lt;/label&gt;</span>
+          <span class="tok-nt">&lt;input</span> <span class="tok-na">type=</span><span class="tok-s">&quot;text&quot;</span> <span class="tok-na">name=</span><span class="tok-s">&quot;name&quot;</span> <span class="tok-na">id=</span><span class="tok-s">&quot;name&quot;</span> <span class="tok-nt">/&gt;</span>
+          <span class="tok-nt">&lt;input</span> <span class="tok-na">type=</span><span class="tok-s">&quot;submit&quot;</span> <span class="tok-nt">/&gt;</span>
+        <span class="tok-nt">&lt;/form&gt;</span>
+        <span class="tok-nt">&lt;table&gt;</span>
+          <span class="tok-nt">&lt;thead&gt;</span>
+            <span class="tok-nt">&lt;tr&gt;</span>
+              <span class="tok-nt">&lt;th&gt;</span>TODOS<span class="tok-nt">&lt;/th&gt;</span>
+              <span class="tok-nt">&lt;th&gt;&lt;/th&gt;</span>
+            <span class="tok-nt">&lt;/tr&gt;</span>
+          <span class="tok-nt">&lt;/thead&gt;</span>
+          <span class="tok-nt">&lt;tbody&gt;</span>
+            <span class="tok-nt">&lt;tr&gt;</span>
+              <span class="tok-nt">&lt;td&gt;</span>Walk the dog<span class="tok-nt">&lt;/td&gt;</span>
+              <span class="tok-nt">&lt;td&gt;&lt;a</span> <span class="tok-na">href=</span><span class="tok-s">&quot;#&quot;</span><span class="tok-nt">&gt;</span>Remove<span class="tok-nt">&lt;/a&gt;&lt;/td&gt;</span>
+            <span class="tok-nt">&lt;/tr&gt;</span>
+            <span class="tok-nt">&lt;tr&gt;</span>
+              <span class="tok-nt">&lt;td&gt;</span>Take the trash out<span class="tok-nt">&lt;/td&gt;</span>
+              <span class="tok-nt">&lt;td&gt;&lt;a</span> <span class="tok-na">href=</span><span class="tok-s">&quot;#&quot;</span><span class="tok-nt">&gt;</span>Remove<span class="tok-nt">&lt;/a&gt;&lt;/td&gt;</span>
+            <span class="tok-nt">&lt;/tr&gt;</span>
+            <span class="tok-nt">&lt;tr&gt;</span>
+              <span class="tok-nt">&lt;td&gt;</span>Buy groceries<span class="tok-nt">&lt;/td&gt;</span>
+              <span class="tok-nt">&lt;td&gt;&lt;a</span> <span class="tok-na">href=</span><span class="tok-s">&quot;#&quot;</span><span class="tok-nt">&gt;</span>Remove<span class="tok-nt">&lt;/a&gt;&lt;/td&gt;</span>
+            <span class="tok-nt">&lt;/tr&gt;</span>
+          <span class="tok-nt">&lt;/tbody&gt;</span>
+        <span class="tok-nt">&lt;/table&gt;</span>
+    <span class="tok-nt">&lt;/body&gt;</span>
+<span class="tok-nt">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And if we reload the app, it should look like this on the browser:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/images/todo-html.jpg" alt="todo html">
+</div>
+</div>
+<div class="paragraph">
+<p>With this we have a prototype, it doesn&#8217;t work, but we can see how it looks. But it&#8217;s missing aesthetics, it&#8217;s just a little too plain. We&#8217;ll fix that by adding another tool called <strong><em>Bootstrap</em></strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bootstrap">Bootstrap</h3>
+<div class="quoteblock">
+<blockquote>
+Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+</blockquote>
+<div class="attribution">
+&#8212; getbootstrap.com
+</div>
+</div>
+<div class="paragraph">
+<p>The use of <strong><em>Bootstrap</em></strong> will teach us basic HTML, CSS, and JavaScript. Without having to know a lot, our apps will look a lot better than what most of us can do without it. And besides building our app with this tool means it&#8217;s mobile ready (we do need to know a few rules though).</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s add it to our template and use it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+<span class="tok-nt">&lt;html</span> <span class="tok-na">xmlns=</span><span class="tok-s">&quot;http://www.w3.org/1999/xhtml&quot;</span>
+      <span class="tok-na">xmlns:th=</span><span class="tok-s">&quot;http://www.thymeleaf.org&quot;</span><span class="tok-nt">&gt;</span>
+  <span class="tok-nt">&lt;head&gt;</span>
+    <span class="tok-nt">&lt;title&gt;</span>TODO<span class="tok-nt">&lt;/title&gt;</span>
+    <span class="tok-nt">&lt;link</span> <span class="tok-na">rel=</span><span class="tok-s">&quot;stylesheet&quot;</span> <span class="tok-na">href=</span><span class="tok-s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;</span> <span class="tok-nt">/&gt;</span>
+  <span class="tok-nt">&lt;/head&gt;</span>
+  <span class="tok-nt">&lt;body&gt;</span>
+    <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;container&quot;</span><span class="tok-nt">&gt;</span>
+      <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;row&quot;</span><span class="tok-nt">&gt;</span>
+        <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;col-md-12&quot;</span><span class="tok-nt">&gt;</span>
+          <span class="tok-nt">&lt;h1&gt;</span>TODO App<span class="tok-nt">&lt;/h1&gt;</span>
+        <span class="tok-nt">&lt;/div&gt;</span>
+        <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;col-md-6&quot;</span><span class="tok-nt">&gt;</span>
+          <span class="tok-nt">&lt;form</span> <span class="tok-na">action=</span><span class="tok-s">&quot;#&quot;</span><span class="tok-nt">&gt;</span>
+            <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;form-group&quot;</span><span class="tok-nt">&gt;</span>
+              <span class="tok-nt">&lt;label</span> <span class="tok-na">for=</span><span class="tok-s">&quot;name&quot;</span><span class="tok-nt">&gt;</span>TODO Name<span class="tok-nt">&lt;/label&gt;</span>
+              <span class="tok-nt">&lt;input</span> <span class="tok-na">type=</span><span class="tok-s">&quot;text&quot;</span> <span class="tok-na">name=</span><span class="tok-s">&quot;name&quot;</span> <span class="tok-na">id=</span><span class="tok-s">&quot;name&quot;</span> <span class="tok-na">class=</span><span class="tok-s">&quot;form-control&quot;</span><span class="tok-nt">/&gt;</span>
+            <span class="tok-nt">&lt;/div&gt;</span>
+            <span class="tok-nt">&lt;input</span> <span class="tok-na">type=</span><span class="tok-s">&quot;submit&quot;</span> <span class="tok-na">class=</span><span class="tok-s">&quot;btn btn-primary btn-lg&quot;</span><span class="tok-nt">/&gt;</span>
+          <span class="tok-nt">&lt;/form&gt;</span>
+        <span class="tok-nt">&lt;/div&gt;</span>
+        <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;col-md-6&quot;</span><span class="tok-nt">&gt;</span>
+          <span class="tok-nt">&lt;table</span> <span class="tok-na">class=</span><span class="tok-s">&quot;table table-striped table-hover&quot;</span><span class="tok-nt">&gt;</span>
+            <span class="tok-nt">&lt;thead&gt;</span>
+              <span class="tok-nt">&lt;tr&gt;</span>
+                <span class="tok-nt">&lt;th&gt;</span>TODOS<span class="tok-nt">&lt;/th&gt;</span>
+                <span class="tok-nt">&lt;th&gt;&lt;/th&gt;</span>
+              <span class="tok-nt">&lt;/tr&gt;</span>
+            <span class="tok-nt">&lt;/thead&gt;</span>
+            <span class="tok-nt">&lt;tbody&gt;</span>
+              <span class="tok-nt">&lt;tr&gt;</span>
+                <span class="tok-nt">&lt;td&gt;</span>Walk the dog<span class="tok-nt">&lt;/td&gt;</span>
+                <span class="tok-nt">&lt;td&gt;&lt;a</span> <span class="tok-na">href=</span><span class="tok-s">&quot;#&quot;</span><span class="tok-nt">&gt;</span>Remove<span class="tok-nt">&lt;/a&gt;&lt;/td&gt;</span>
+              <span class="tok-nt">&lt;/tr&gt;</span>
+              <span class="tok-nt">&lt;tr&gt;</span>
+                <span class="tok-nt">&lt;td&gt;</span>Take the trash out<span class="tok-nt">&lt;/td&gt;</span>
+                <span class="tok-nt">&lt;td&gt;&lt;a</span> <span class="tok-na">href=</span><span class="tok-s">&quot;#&quot;</span><span class="tok-nt">&gt;</span>Remove<span class="tok-nt">&lt;/a&gt;&lt;/td&gt;</span>
+              <span class="tok-nt">&lt;/tr&gt;</span>
+              <span class="tok-nt">&lt;tr&gt;</span>
+                <span class="tok-nt">&lt;td&gt;</span>Buy groceries<span class="tok-nt">&lt;/td&gt;</span>
+                <span class="tok-nt">&lt;td&gt;&lt;a</span> <span class="tok-na">href=</span><span class="tok-s">&quot;#&quot;</span><span class="tok-nt">&gt;</span>Remove<span class="tok-nt">&lt;/a&gt;&lt;/td&gt;</span>
+              <span class="tok-nt">&lt;/tr&gt;</span>
+            <span class="tok-nt">&lt;/tbody&gt;</span>
+          <span class="tok-nt">&lt;/table&gt;</span>
+        <span class="tok-nt">&lt;/div&gt;</span>
+      <span class="tok-nt">&lt;/div&gt;</span>
+    <span class="tok-nt">&lt;/div&gt;</span>
+
+    <span class="tok-nt">&lt;script </span><span class="tok-na">src=</span><span class="tok-s">&quot;http://code.jquery.com/jquery-3.1.1.min.js&quot;</span><span class="tok-nt">&gt;&lt;/script&gt;</span>
+    <span class="tok-nt">&lt;script </span><span class="tok-na">src=</span><span class="tok-s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;</span><span class="tok-nt">&gt;&lt;/script&gt;</span>
+  <span class="tok-nt">&lt;/body&gt;</span>
+<span class="tok-nt">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ok, the first thing I want you to notice is the style line added to the HEAD section and the SCRIPT lines just before the closing BODY tag. The style line has Bootstrap&#8217;s Cascading Style Sheet (CSS) rules, and with just that line would be enough to have the rules to style the page, but if we want some other goodies that the tool provides we need the SCRIPT lines at the bottom of the HTML page. Bootstrap requires JQuery (a JavaScript framework) to work, that&#8217;s the reason why they&#8217;re two script lines. Another thing you&#8217;ll notice is the extra markup we added. This markup is what you&#8217;ll need to learn if you&#8217;re using this CSS framework. There&#8217;re other frameworks out there that don&#8217;t require as much markup, but Bootstrap is one of the most used out there. Now it should look something like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/images/todo-bootstrap.jpg" alt="todo bootstrap">
+</div>
+</div>
+<div class="paragraph">
+<p>If we want to see it on a display that&#8217;s not as big as our desktop computer it will still look nice, thanks to the extra markup we added.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/images/todo-bootstrap-mobile.jpg" alt="todo bootstrap mobile">
+</div>
+</div>
+<div class="paragraph">
+<p>Now, let&#8217;s add a method to our HomeController to actually add the todo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><table class="pyhltable"><tr><td class="linenos"><div class="linenodiv"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</div></td><td class="code"><span class="tok-kn">package</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">davidmendoza</span><span class="tok-o">.</span><span class="tok-na">todo</span><span class="tok-o">.</span><span class="tok-na">home</span><span class="tok-o">;</span>
+
+<span class="tok-kn">import</span> <span class="tok-nn">java.util.ArrayList</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">java.util.List</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.stereotype.Controller</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.ui.Model</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.GetMapping</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.PostMapping</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.RequestParam</span><span class="tok-o">;</span>
+
+<span class="tok-nd">@Controller</span>
+<span class="tok-nd">@RequestMapping</span><span class="tok-o">(</span><span class="tok-s">&quot;/&quot;</span><span class="tok-o">)</span>
+<span class="tok-kd">public</span> <span class="tok-kd">class</span> <span class="tok-nc">HomeController</span> <span class="tok-o">{</span>
+
+    <span class="tok-nd">@GetMapping</span>
+    <span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">home</span><span class="tok-o">()</span> <span class="tok-o">{</span>
+        <span class="tok-k">return</span> <span class="tok-s">&quot;home&quot;</span><span class="tok-o">;</span>
+    <span class="tok-o">}</span>
+
+    <span class="tok-nd">@PostMapping</span>
+    <span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">addTodo</span><span class="tok-o">(</span><span class="tok-nd">@RequestParam</span> <span class="tok-n">String</span> <span class="tok-n">name</span><span class="tok-o">,</span> <span class="tok-n">Model</span> <span class="tok-n">model</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;</span> <span class="tok-n">todos</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">ArrayList</span><span class="tok-o">&lt;&gt;();</span>
+        <span class="tok-n">todos</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">name</span><span class="tok-o">);</span>
+        <span class="tok-n">model</span><span class="tok-o">.</span><span class="tok-na">addAttribute</span><span class="tok-o">(</span><span class="tok-s">&quot;todos&quot;</span><span class="tok-o">,</span> <span class="tok-n">todos</span><span class="tok-o">);</span>
+        <span class="tok-k">return</span> <span class="tok-s">&quot;home&quot;</span><span class="tok-o">;</span>
+    <span class="tok-o">}</span>
+<span class="tok-o">}</span>
+</td></tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the home.html file would need to be changed to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="html"><table class="pyhltable"><tr><td class="linenos"><div class="linenodiv"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</div></td><td class="code"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+<span class="tok-nt">&lt;html</span> <span class="tok-na">xmlns=</span><span class="tok-s">&quot;http://www.w3.org/1999/xhtml&quot;</span>
+      <span class="tok-na">xmlns:th=</span><span class="tok-s">&quot;http://www.thymeleaf.org&quot;</span><span class="tok-nt">&gt;</span>
+  <span class="tok-nt">&lt;head&gt;</span>
+    <span class="tok-nt">&lt;title&gt;</span>TODO<span class="tok-nt">&lt;/title&gt;</span>
+    <span class="tok-nt">&lt;link</span> <span class="tok-na">rel=</span><span class="tok-s">&quot;stylesheet&quot;</span> <span class="tok-na">href=</span><span class="tok-s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;</span> <span class="tok-nt">/&gt;</span>
+  <span class="tok-nt">&lt;/head&gt;</span>
+  <span class="tok-nt">&lt;body&gt;</span>
+    <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;container&quot;</span><span class="tok-nt">&gt;</span>
+      <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;row&quot;</span><span class="tok-nt">&gt;</span>
+        <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;col-md-12&quot;</span><span class="tok-nt">&gt;</span>
+          <span class="tok-nt">&lt;h1&gt;</span>TODO App<span class="tok-nt">&lt;/h1&gt;</span>
+        <span class="tok-nt">&lt;/div&gt;</span>
+        <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;col-md-6&quot;</span><span class="tok-nt">&gt;</span>
+          <span class="tok-nt">&lt;form</span> <span class="tok-na">action=</span><span class="tok-s">&quot;#&quot;</span> <span class="tok-na">th:action=</span><span class="tok-s">&quot;@{/}&quot;</span> <span class="tok-na">method=</span><span class="tok-s">&quot;POST&quot;</span><span class="tok-nt">&gt;</span>
+            <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;form-group&quot;</span><span class="tok-nt">&gt;</span>
+              <span class="tok-nt">&lt;label</span> <span class="tok-na">for=</span><span class="tok-s">&quot;name&quot;</span><span class="tok-nt">&gt;</span>TODO Name<span class="tok-nt">&lt;/label&gt;</span>
+              <span class="tok-nt">&lt;input</span> <span class="tok-na">type=</span><span class="tok-s">&quot;text&quot;</span> <span class="tok-na">name=</span><span class="tok-s">&quot;name&quot;</span> <span class="tok-na">id=</span><span class="tok-s">&quot;name&quot;</span> <span class="tok-na">class=</span><span class="tok-s">&quot;form-control&quot;</span><span class="tok-nt">/&gt;</span>
+            <span class="tok-nt">&lt;/div&gt;</span>
+            <span class="tok-nt">&lt;input</span> <span class="tok-na">type=</span><span class="tok-s">&quot;submit&quot;</span> <span class="tok-na">class=</span><span class="tok-s">&quot;btn btn-primary btn-lg&quot;</span><span class="tok-nt">/&gt;</span>
+          <span class="tok-nt">&lt;/form&gt;</span>
+        <span class="tok-nt">&lt;/div&gt;</span>
+        <span class="tok-nt">&lt;div</span> <span class="tok-na">class=</span><span class="tok-s">&quot;col-md-6&quot;</span><span class="tok-nt">&gt;</span>
+          <span class="tok-nt">&lt;table</span> <span class="tok-na">class=</span><span class="tok-s">&quot;table table-striped table-hover&quot;</span><span class="tok-nt">&gt;</span>
+            <span class="tok-nt">&lt;thead&gt;</span>
+              <span class="tok-nt">&lt;tr&gt;</span>
+                <span class="tok-nt">&lt;th&gt;</span>TODOS<span class="tok-nt">&lt;/th&gt;</span>
+                <span class="tok-nt">&lt;th&gt;&lt;/th&gt;</span>
+              <span class="tok-nt">&lt;/tr&gt;</span>
+            <span class="tok-nt">&lt;/thead&gt;</span>
+            <span class="tok-nt">&lt;tbody&gt;</span>
+              <span class="tok-nt">&lt;tr</span> <span class="tok-na">th:each=</span><span class="tok-s">&quot;todo : ${todos}&quot;</span><span class="tok-nt">&gt;</span>
+                <span class="tok-nt">&lt;td</span> <span class="tok-na">th:text=</span><span class="tok-s">&quot;${todo}&quot;</span><span class="tok-nt">&gt;</span>Walk the dog<span class="tok-nt">&lt;/td&gt;</span>
+                <span class="tok-nt">&lt;td&gt;&lt;a</span> <span class="tok-na">href=</span><span class="tok-s">&quot;#&quot;</span><span class="tok-nt">&gt;</span>Remove<span class="tok-nt">&lt;/a&gt;&lt;/td&gt;</span>
+              <span class="tok-nt">&lt;/tr&gt;</span>
+            <span class="tok-nt">&lt;/tbody&gt;</span>
+          <span class="tok-nt">&lt;/table&gt;</span>
+        <span class="tok-nt">&lt;/div&gt;</span>
+      <span class="tok-nt">&lt;/div&gt;</span>
+    <span class="tok-nt">&lt;/div&gt;</span>
+
+    <span class="tok-nt">&lt;script </span><span class="tok-na">src=</span><span class="tok-s">&quot;http://code.jquery.com/jquery-3.1.1.min.js&quot;</span><span class="tok-nt">&gt;&lt;/script&gt;</span>
+    <span class="tok-nt">&lt;script </span><span class="tok-na">src=</span><span class="tok-s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;</span><span class="tok-nt">&gt;&lt;/script&gt;</span>
+  <span class="tok-nt">&lt;/body&gt;</span>
+<span class="tok-nt">&lt;/html&gt;</span>
+</td></tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first thing you&#8217;ll notice when reloading the app is that it&#8217;s not showing your todo&#8217;s anymore. That&#8217;s because of the <strong><em>th:each</em></strong> in the TBODY &gt; TR tag. This tag is a loop tag that will go through our list of todo&#8217;s, but when we load the page the todos list is empty. We need to type a todo and click the submit button. Now it shows! Type another one, and is showing alright, but the last one is gone. That&#8217;s because we are creating a new list each time we submit a todo. Let&#8217;s fix that by adding our todo&#8217;s to the <em>Session</em> (is a special storage place our server assigns to each client).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><table class="pyhltable"><tr><td class="linenos"><div class="linenodiv"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</div></td><td class="code"><span class="tok-kn">package</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">davidmendoza</span><span class="tok-o">.</span><span class="tok-na">todo</span><span class="tok-o">.</span><span class="tok-na">home</span><span class="tok-o">;</span>
+
+<span class="tok-kn">import</span> <span class="tok-nn">java.util.ArrayList</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">java.util.List</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">javax.servlet.http.HttpSession</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.stereotype.Controller</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.ui.Model</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.GetMapping</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.PostMapping</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="tok-o">;</span>
+<span class="tok-kn">import</span> <span class="tok-nn">org.springframework.web.bind.annotation.RequestParam</span><span class="tok-o">;</span>
+
+<span class="tok-nd">@Controller</span>
+<span class="tok-nd">@RequestMapping</span><span class="tok-o">(</span><span class="tok-s">&quot;/&quot;</span><span class="tok-o">)</span>
+<span class="tok-kd">public</span> <span class="tok-kd">class</span> <span class="tok-nc">HomeController</span> <span class="tok-o">{</span>
+
+    <span class="tok-nd">@GetMapping</span>
+    <span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">home</span><span class="tok-o">(</span><span class="tok-n">HttpSession</span> <span class="tok-n">session</span><span class="tok-o">,</span> <span class="tok-n">Model</span> <span class="tok-n">model</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;</span> <span class="tok-n">todos</span> <span class="tok-o">=</span> <span class="tok-o">(</span><span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;)</span> <span class="tok-n">session</span><span class="tok-o">.</span><span class="tok-na">getAttribute</span><span class="tok-o">(</span><span class="tok-s">&quot;todos&quot;</span><span class="tok-o">);</span>
+        <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">todos</span> <span class="tok-o">==</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+            <span class="tok-n">todos</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">ArrayList</span><span class="tok-o">&lt;&gt;();</span>
+            <span class="tok-n">session</span><span class="tok-o">.</span><span class="tok-na">setAttribute</span><span class="tok-o">(</span><span class="tok-s">&quot;todos&quot;</span><span class="tok-o">,</span> <span class="tok-n">todos</span><span class="tok-o">);</span>
+        <span class="tok-o">}</span>
+        <span class="tok-n">model</span><span class="tok-o">.</span><span class="tok-na">addAttribute</span><span class="tok-o">(</span><span class="tok-s">&quot;todos&quot;</span><span class="tok-o">,</span> <span class="tok-n">todos</span><span class="tok-o">);</span>
+        <span class="tok-k">return</span> <span class="tok-s">&quot;home&quot;</span><span class="tok-o">;</span>
+    <span class="tok-o">}</span>
+
+    <span class="tok-nd">@PostMapping</span>
+    <span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">addTodo</span><span class="tok-o">(</span><span class="tok-nd">@RequestParam</span> <span class="tok-n">String</span> <span class="tok-n">name</span><span class="tok-o">,</span> <span class="tok-n">Model</span> <span class="tok-n">model</span><span class="tok-o">,</span> <span class="tok-n">HttpSession</span> <span class="tok-n">session</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;</span> <span class="tok-n">todos</span> <span class="tok-o">=</span> <span class="tok-o">(</span><span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;)</span> <span class="tok-n">session</span><span class="tok-o">.</span><span class="tok-na">getAttribute</span><span class="tok-o">(</span><span class="tok-s">&quot;todos&quot;</span><span class="tok-o">);</span>
+        <span class="tok-n">todos</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">name</span><span class="tok-o">);</span>
+        <span class="tok-n">model</span><span class="tok-o">.</span><span class="tok-na">addAttribute</span><span class="tok-o">(</span><span class="tok-s">&quot;todos&quot;</span><span class="tok-o">,</span> <span class="tok-n">todos</span><span class="tok-o">);</span>
+        <span class="tok-k">return</span> <span class="tok-s">&quot;home&quot;</span><span class="tok-o">;</span>
+    <span class="tok-o">}</span>
+<span class="tok-o">}</span>
+</td></tr></table></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0<br>
+Last updated 2016-10-19 09:10:08 CDT
+</div>
+</div>
+</body>
+</html>
